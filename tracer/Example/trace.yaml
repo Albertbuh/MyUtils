@@ -1,0 +1,39 @@
+threads:
+- id: 4
+  time: 1002ms
+  methods:
+  - - childMethods:
+      - childMethods:
+        - childMethods: []
+          name: Aboba
+          className: Bar
+          time: 301ms
+        - childMethods: []
+          name: Biboba
+          className: Bar
+          time: 400ms
+        name: InnerMethod
+        className: Bar
+        time: 902ms
+      name: MyMethod
+      className: Foo
+      time: 1002ms
+- id: 6
+  time: 1003ms
+  methods:
+  - - childMethods:
+      - childMethods:
+        - childMethods: []
+          name: Aboba
+          className: Bar
+          time: 303ms
+        - childMethods: []
+          name: Biboba
+          className: Bar
+          time: 400ms
+        name: InnerMethod
+        className: Bar
+        time: 903ms
+      name: MyMethod
+      className: Foo
+      time: 1003ms

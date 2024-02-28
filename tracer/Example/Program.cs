@@ -1,17 +1,21 @@
 ﻿using Tracer.Core;
+using Tracer.Serialization;
 
 ITracer tracer = new Tracer.Core.Tracer();
 var foo = new Foo(tracer);
 var t2 = Task.Run(() => foo.MyMethod());
 var t1 = Task.Run(() => foo.MyMethod());
 Task.WaitAll(t1, t2);
-foo.PrintTraceResults();
+
+foo.Serialize(@"trace");
 
 public class Foo
 {
 	private Bar _bar;
 	private ITracer _tracer;
 
+  ITraceResultSerializer serializer = new YamlSerializer();
+  
 	internal Foo(ITracer tracer)
 	{
 		_tracer = tracer;
@@ -25,6 +29,11 @@ public class Foo
 		_bar.InnerMethod();
 		_tracer.StopTrace();
 	}
+
+  public void Serialize(string path)
+  {
+    serializer.Serialize(_tracer.GetTraceResult(), path);
+  }
 
   public void PrintTraceResults()
   {
