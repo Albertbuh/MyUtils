@@ -2,7 +2,10 @@
 
 ITracer tracer = new Tracer.Core.Tracer();
 var foo = new Foo(tracer);
-foo.MyMethod();
+var t2 = Task.Run(() => foo.MyMethod());
+var t1 = Task.Run(() => foo.MyMethod());
+Task.WaitAll(t1, t2);
+foo.PrintTraceResults();
 
 public class Foo
 {
@@ -21,13 +24,17 @@ public class Foo
     Thread.Sleep(100);
 		_bar.InnerMethod();
 		_tracer.StopTrace();
+	}
 
+  public void PrintTraceResults()
+  {
+    System.Console.WriteLine("Thread -> {0}", System.Environment.CurrentManagedThreadId);
     var result = _tracer.GetTraceResult();
     foreach(var t in result.Threads)
     {
       Console.WriteLine(t.ToString());
     }
-	}
+  }
 }
 
 public class Bar

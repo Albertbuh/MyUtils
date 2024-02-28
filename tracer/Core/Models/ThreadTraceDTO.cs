@@ -20,7 +20,6 @@ public struct ThreadTraceDTO
     sb.AppendLine($"Time: {Time}");
     foreach(var q in Methods)
     {
-      System.Console.WriteLine(q.Count);
       var depth = 0;
       while(q.Count != 0)
       {
