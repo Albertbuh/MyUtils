@@ -2,14 +2,14 @@ namespace Tracer.Core.Models;
 
 public struct ThreadTraceDTO
 {
-  internal readonly int Id;
-  internal readonly long Time;
-  internal IEnumerable<Queue<MethodInfo>> Methods;
+  public readonly int Id;
+  public readonly string Time;
+  public IEnumerable<Queue<MethodInfo>> Methods;
 
   internal ThreadTraceDTO(int id, long time, IEnumerable<Queue<MethodInfo>> methods)
   {
     Id = id;
-    Time = time;
+    Time = $"{time}ms";
     Methods = methods;
   }
 
@@ -29,7 +29,7 @@ public struct ThreadTraceDTO
         
         sb.Append($"Tracing for method {cur.Name} (thread: {this.Id}) (depth: {depth}) ");
         sb.Append($"of class {cur.ClassName}. ");
-        sb.Append($"Execution time - {cur.TimeString}");
+        sb.Append($"Execution time - {cur.Time}");
         sb.AppendLine();
         if(cur.ChildMethods.Any())
           depth++;

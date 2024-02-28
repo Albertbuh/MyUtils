@@ -1,19 +1,19 @@
 namespace Tracer.Core.Models;
 
-internal struct MethodInfo
+public struct MethodInfo
 {
-	internal string Name {get; set;}
-  internal string ClassName {get; set;}
-  private long Time {get; set;}
-  internal string TimeString => $"{Time}ms";
+	public string Name {get; private set;}
+  public string ClassName {get; private set;}
+  private long _time {get; set;}
+  public string Time => $"{_time}ms";
 
-  internal IEnumerable<MethodInfo> ChildMethods = new Queue<MethodInfo>();
+  public IReadOnlyCollection<MethodInfo> ChildMethods = new Queue<MethodInfo>();
 
   internal MethodInfo(string name, string className, long time)
   {
     Name = name;
     ClassName = className;
-    Time = time;
+    _time = time;
   }
 
 }
