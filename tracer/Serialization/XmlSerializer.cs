@@ -10,24 +10,11 @@ public class XmlSerializer : ITraceResultSerializer
     if(!path.Contains('.'))
       path = $"{path}.{Format}";
 
-    var json = JsonLayer(traceResult);
+    var json = JsonConvert.SerializeObject(traceResult);
     var node = JsonConvert.DeserializeXNode(json, "root");
     using(StreamWriter stream = new StreamWriter(path))
     {
       stream.Write(node?.ToString());
     }
-  }
-
-  private string JsonLayer(TraceResult traceResult)
-  {
-    const string jsonPath = @"fasjflasjf.json";
-    using(StreamWriter stream = new StreamWriter(jsonPath))
-    using(JsonWriter writer = new JsonTextWriter(stream))
-    {
-      serializer.Serialize(writer, traceResult);
-    }
-    string jsonText = File.ReadAllText(jsonPath);
-    Task.Run(() => File.Delete(jsonPath));
-    return jsonText;
   }
 }

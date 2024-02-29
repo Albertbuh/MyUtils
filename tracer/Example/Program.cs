@@ -6,15 +6,14 @@ var foo = new Foo(tracer);
 var t2 = Task.Run(() => foo.MyMethod());
 var t1 = Task.Run(() => foo.MyMethod());
 Task.WaitAll(t1, t2);
-
-foo.Serialize(@"trace");
+foo.PrintTraceResults();
 
 public class Foo
 {
 	private Bar _bar;
 	private ITracer _tracer;
+  public Tracer.Core.Models.TraceResult TraceResults => _tracer.GetTraceResult();
 
-  ITraceResultSerializer serializer = new YamlSerializer();
   
 	internal Foo(ITracer tracer)
 	{
@@ -32,18 +31,22 @@ public class Foo
 
   public void Serialize(string path)
   {
-    serializer.Serialize(_tracer.GetTraceResult(), path);
+    if(path.Contains('.'))
+      path = path.Substring(0, path.IndexOf('.'));
   }
 
   public void PrintTraceResults()
   {
-    System.Console.WriteLine("Thread -> {0}", System.Environment.CurrentManagedThreadId);
     var result = _tracer.GetTraceResult();
+    System.Console.WriteLine("Thread -> {0}", System.Environment.CurrentManagedThreadId);
     foreach(var t in result.Threads)
     {
       Console.WriteLine(t.ToString());
     }
+    var s = new SerializeLoader();
+    s.Serialize(result, "TraceResults");
   }
+
 }
 
 public class Bar

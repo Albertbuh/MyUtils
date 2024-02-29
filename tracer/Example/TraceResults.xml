@@ -1,6 +1,32 @@
 <root>
   <Threads>
     <Id>4</Id>
+    <Time>1004ms</Time>
+    <Methods>
+      <Methods>
+        <ChildMethods>
+          <ChildMethods>
+            <Name>Aboba</Name>
+            <ClassName>Bar</ClassName>
+            <Time>304ms</Time>
+          </ChildMethods>
+          <ChildMethods>
+            <Name>Biboba</Name>
+            <ClassName>Bar</ClassName>
+            <Time>400ms</Time>
+          </ChildMethods>
+          <Name>InnerMethod</Name>
+          <ClassName>Bar</ClassName>
+          <Time>904ms</Time>
+        </ChildMethods>
+        <Name>MyMethod</Name>
+        <ClassName>Foo</ClassName>
+        <Time>1004ms</Time>
+      </Methods>
+    </Methods>
+  </Threads>
+  <Threads>
+    <Id>6</Id>
     <Time>1002ms</Time>
     <Methods>
       <Methods>
@@ -22,32 +48,6 @@
         <Name>MyMethod</Name>
         <ClassName>Foo</ClassName>
         <Time>1002ms</Time>
-      </Methods>
-    </Methods>
-  </Threads>
-  <Threads>
-    <Id>6</Id>
-    <Time>1003ms</Time>
-    <Methods>
-      <Methods>
-        <ChildMethods>
-          <ChildMethods>
-            <Name>Aboba</Name>
-            <ClassName>Bar</ClassName>
-            <Time>302ms</Time>
-          </ChildMethods>
-          <ChildMethods>
-            <Name>Biboba</Name>
-            <ClassName>Bar</ClassName>
-            <Time>400ms</Time>
-          </ChildMethods>
-          <Name>InnerMethod</Name>
-          <ClassName>Bar</ClassName>
-          <Time>903ms</Time>
-        </ChildMethods>
-        <Name>MyMethod</Name>
-        <ClassName>Foo</ClassName>
-        <Time>1003ms</Time>
       </Methods>
     </Methods>
   </Threads>

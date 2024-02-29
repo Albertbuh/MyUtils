@@ -18,8 +18,9 @@ public struct ThreadTraceDTO
     var sb = new System.Text.StringBuilder();
     sb.AppendLine($"Thread: {Id}");
     sb.AppendLine($"Time: {Time}");
-    foreach(var q in Methods)
+    foreach(var queue in Methods)
     {
+      var q = new Queue<MethodInfo>(queue);
       var depth = 0;
       while(q.Count != 0)
       {

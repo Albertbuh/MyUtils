@@ -2,6 +2,40 @@
   "Threads": [
     {
       "Id": 4,
+      "Time": "1004ms",
+      "Methods": [
+        [
+          {
+            "ChildMethods": [
+              {
+                "ChildMethods": [
+                  {
+                    "ChildMethods": [],
+                    "Name": "Aboba",
+                    "ClassName": "Bar",
+                    "Time": "304ms"
+                  },
+                  {
+                    "ChildMethods": [],
+                    "Name": "Biboba",
+                    "ClassName": "Bar",
+                    "Time": "400ms"
+                  }
+                ],
+                "Name": "InnerMethod",
+                "ClassName": "Bar",
+                "Time": "904ms"
+              }
+            ],
+            "Name": "MyMethod",
+            "ClassName": "Foo",
+            "Time": "1004ms"
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 6,
       "Time": "1002ms",
       "Methods": [
         [
@@ -19,7 +53,7 @@
                     "ChildMethods": [],
                     "Name": "Biboba",
                     "ClassName": "Bar",
-                    "Time": "401ms"
+                    "Time": "400ms"
                   }
                 ],
                 "Name": "InnerMethod",
@@ -30,40 +64,6 @@
             "Name": "MyMethod",
             "ClassName": "Foo",
             "Time": "1002ms"
-          }
-        ]
-      ]
-    },
-    {
-      "Id": 6,
-      "Time": "1003ms",
-      "Methods": [
-        [
-          {
-            "ChildMethods": [
-              {
-                "ChildMethods": [
-                  {
-                    "ChildMethods": [],
-                    "Name": "Aboba",
-                    "ClassName": "Bar",
-                    "Time": "302ms"
-                  },
-                  {
-                    "ChildMethods": [],
-                    "Name": "Biboba",
-                    "ClassName": "Bar",
-                    "Time": "400ms"
-                  }
-                ],
-                "Name": "InnerMethod",
-                "ClassName": "Bar",
-                "Time": "903ms"
-              }
-            ],
-            "Name": "MyMethod",
-            "ClassName": "Foo",
-            "Time": "1003ms"
           }
         ]
       ]
