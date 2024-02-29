@@ -1,69 +1,135 @@
 {
   "Threads": [
     {
-      "Id": 4,
-      "Time": "1004ms",
+      "Id": 10,
+      "Time": "2200ms",
       "Methods": [
         [
           {
-            "ChildMethods": [
-              {
-                "ChildMethods": [
-                  {
-                    "ChildMethods": [],
-                    "Name": "Aboba",
-                    "ClassName": "Bar",
-                    "Time": "304ms"
-                  },
-                  {
-                    "ChildMethods": [],
-                    "Name": "Biboba",
-                    "ClassName": "Bar",
-                    "Time": "400ms"
-                  }
-                ],
-                "Name": "InnerMethod",
-                "ClassName": "Bar",
-                "Time": "904ms"
-              }
-            ],
-            "Name": "MyMethod",
+            "ChildMethods": [],
+            "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "1004ms"
+            "Time": "1100ms"
+          }
+        ],
+        [
+          {
+            "ChildMethods": [],
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "1100ms"
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 9,
+      "Time": "1102ms",
+      "Methods": [
+        [
+          {
+            "ChildMethods": [],
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "1102ms"
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 7,
+      "Time": "1102ms",
+      "Methods": [
+        [
+          {
+            "ChildMethods": [],
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "1102ms"
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 11,
+      "Time": "1102ms",
+      "Methods": [
+        [
+          {
+            "ChildMethods": [],
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "1102ms"
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 4,
+      "Time": "1102ms",
+      "Methods": [
+        [
+          {
+            "ChildMethods": [],
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "1102ms"
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 8,
+      "Time": "1102ms",
+      "Methods": [
+        [
+          {
+            "ChildMethods": [],
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "1102ms"
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 12,
+      "Time": "1102ms",
+      "Methods": [
+        [
+          {
+            "ChildMethods": [],
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "1102ms"
           }
         ]
       ]
     },
     {
       "Id": 6,
-      "Time": "1002ms",
+      "Time": "1102ms",
       "Methods": [
         [
           {
-            "ChildMethods": [
-              {
-                "ChildMethods": [
-                  {
-                    "ChildMethods": [],
-                    "Name": "Aboba",
-                    "ClassName": "Bar",
-                    "Time": "301ms"
-                  },
-                  {
-                    "ChildMethods": [],
-                    "Name": "Biboba",
-                    "ClassName": "Bar",
-                    "Time": "400ms"
-                  }
-                ],
-                "Name": "InnerMethod",
-                "ClassName": "Bar",
-                "Time": "902ms"
-              }
-            ],
-            "Name": "MyMethod",
+            "ChildMethods": [],
+            "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "1002ms"
+            "Time": "1102ms"
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 13,
+      "Time": "1100ms",
+      "Methods": [
+        [
+          {
+            "ChildMethods": [],
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "1100ms"
           }
         ]
       ]

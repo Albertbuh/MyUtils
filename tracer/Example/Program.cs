@@ -3,17 +3,37 @@ using Tracer.Serialization;
 
 ITracer tracer = new Tracer.Core.Tracer();
 var foo = new Foo(tracer);
-var t2 = Task.Run(() => foo.MyMethod());
-var t1 = Task.Run(() => foo.MyMethod());
-Task.WaitAll(t1, t2);
-foo.PrintTraceResults();
+int threadsAmount = 10;
+var locker = new object();
+var tasks = new Task[threadsAmount];
+    for(int i = 1; i <= threadsAmount; i++)
+    {
+     lock(locker)
+     {
+       tasks[i-1] = new Task(() => 
+          {
+          System.Console.WriteLine($"Time for thread {i-1} = {100 * i}");
+          foo.RunMethodForTrace(100 * i);
+          });
+     }
+    }
+Parallel.ForEach(tasks, (t) => { t.Start(); });
+Task.WaitAll(tasks);
 
+foo.PrintTraceResults();
+    
 public class Foo
 {
 	private Bar _bar;
 	private ITracer _tracer;
   public Tracer.Core.Models.TraceResult TraceResults => _tracer.GetTraceResult();
-
+  
+  public void RunMethodForTrace(int time)
+    {
+      _tracer.StartTrace();
+      Thread.Sleep(time);
+      _tracer.StopTrace();
+    }
   
 	internal Foo(ITracer tracer)
 	{

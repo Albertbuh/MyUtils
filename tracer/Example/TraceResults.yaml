@@ -1,39 +1,68 @@
 threads:
+- id: 10
+  time: 2200ms
+  methods:
+  - - childMethods: []
+      name: RunMethodForTrace
+      className: Foo
+      time: 1100ms
+  - - childMethods: []
+      name: RunMethodForTrace
+      className: Foo
+      time: 1100ms
+- id: 9
+  time: 1102ms
+  methods:
+  - - childMethods: []
+      name: RunMethodForTrace
+      className: Foo
+      time: 1102ms
+- id: 7
+  time: 1102ms
+  methods:
+  - - childMethods: []
+      name: RunMethodForTrace
+      className: Foo
+      time: 1102ms
+- id: 11
+  time: 1102ms
+  methods:
+  - - childMethods: []
+      name: RunMethodForTrace
+      className: Foo
+      time: 1102ms
 - id: 4
-  time: 1004ms
+  time: 1102ms
   methods:
-  - - childMethods:
-      - childMethods:
-        - childMethods: []
-          name: Aboba
-          className: Bar
-          time: 304ms
-        - childMethods: []
-          name: Biboba
-          className: Bar
-          time: 400ms
-        name: InnerMethod
-        className: Bar
-        time: 904ms
-      name: MyMethod
+  - - childMethods: []
+      name: RunMethodForTrace
       className: Foo
-      time: 1004ms
+      time: 1102ms
+- id: 8
+  time: 1102ms
+  methods:
+  - - childMethods: []
+      name: RunMethodForTrace
+      className: Foo
+      time: 1102ms
+- id: 12
+  time: 1102ms
+  methods:
+  - - childMethods: []
+      name: RunMethodForTrace
+      className: Foo
+      time: 1102ms
 - id: 6
-  time: 1002ms
+  time: 1102ms
   methods:
-  - - childMethods:
-      - childMethods:
-        - childMethods: []
-          name: Aboba
-          className: Bar
-          time: 301ms
-        - childMethods: []
-          name: Biboba
-          className: Bar
-          time: 400ms
-        name: InnerMethod
-        className: Bar
-        time: 902ms
-      name: MyMethod
+  - - childMethods: []
+      name: RunMethodForTrace
       className: Foo
-      time: 1002ms
+      time: 1102ms
+- id: 13
+  time: 1100ms
+  methods:
+  - - childMethods: []
+      name: RunMethodForTrace
+      className: Foo
+      time: 1100ms
