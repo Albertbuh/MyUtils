@@ -7,9 +7,11 @@ public struct MethodInfo
   private long _time {get; set;}
   public string Time => $"{_time}ms";
 
+  [JsonProperty(Order = 4)]
+  [YamlMember(Order = 4)]
   public IReadOnlyCollection<MethodInfo> ChildMethods = new Queue<MethodInfo>();
-
-  internal MethodInfo(string name, string className, long time)
+  
+  public MethodInfo(string name, string className, long time)
   {
     Name = name;
     ClassName = className;

@@ -1,68 +1,65 @@
 threads:
-- id: 10
-  time: 2200ms
-  methods:
-  - - childMethods: []
-      name: RunMethodForTrace
-      className: Foo
-      time: 1100ms
-  - - childMethods: []
-      name: RunMethodForTrace
-      className: Foo
-      time: 1100ms
-- id: 9
-  time: 1102ms
-  methods:
-  - - childMethods: []
-      name: RunMethodForTrace
-      className: Foo
-      time: 1102ms
-- id: 7
-  time: 1102ms
-  methods:
-  - - childMethods: []
-      name: RunMethodForTrace
-      className: Foo
-      time: 1102ms
-- id: 11
-  time: 1102ms
-  methods:
-  - - childMethods: []
-      name: RunMethodForTrace
-      className: Foo
-      time: 1102ms
 - id: 4
-  time: 1102ms
+  time: 101ms
   methods:
-  - - childMethods: []
-      name: RunMethodForTrace
+  - - name: RunMethodForTrace
       className: Foo
-      time: 1102ms
+      time: 51ms
+      childMethods: []
+  - - name: RunMethodForTrace
+      className: Foo
+      time: 50ms
+      childMethods: []
+- id: 7
+  time: 56ms
+  methods:
+  - - name: RunMethodForTrace
+      className: Foo
+      time: 56ms
+      childMethods: []
 - id: 8
-  time: 1102ms
+  time: 55ms
   methods:
-  - - childMethods: []
-      name: RunMethodForTrace
+  - - name: RunMethodForTrace
       className: Foo
-      time: 1102ms
-- id: 12
-  time: 1102ms
-  methods:
-  - - childMethods: []
-      name: RunMethodForTrace
-      className: Foo
-      time: 1102ms
+      time: 55ms
+      childMethods: []
 - id: 6
-  time: 1102ms
+  time: 56ms
   methods:
-  - - childMethods: []
-      name: RunMethodForTrace
+  - - name: RunMethodForTrace
       className: Foo
-      time: 1102ms
-- id: 13
-  time: 1100ms
+      time: 56ms
+      childMethods: []
+- id: 9
+  time: 106ms
   methods:
-  - - childMethods: []
-      name: RunMethodForTrace
+  - - name: RunMethodForTrace
       className: Foo
-      time: 1100ms
+      time: 55ms
+      childMethods: []
+  - - name: RunMethodForTrace
+      className: Foo
+      time: 51ms
+      childMethods: []
+- id: 11
+  time: 56ms
+  methods:
+  - - name: RunMethodForTrace
+      className: Foo
+      time: 56ms
+      childMethods: []
+- id: 12
+  time: 56ms
+  methods:
+  - - name: RunMethodForTrace
+      className: Foo
+      time: 56ms
+      childMethods: []
+- id: 10
+  time: 56ms
+  methods:
+  - - name: RunMethodForTrace
+      className: Foo
+      time: 56ms
+      childMethods: []

@@ -42,30 +42,6 @@ internal class ThreadTrace
 		}
 	}
 
-  // private void PrintMethodsList()
-  // {
-  //   foreach(var queue in _methodsList)
-  //   {
-  //     var depth = 0;
-  //     var q = new Queue<MethodInfo>(queue);
-  //     while(q.Count != 0)
-  //     {
-  //       var sb = new System.Text.StringBuilder();
-  //       var cur = q.Dequeue();
-  //       foreach(var child in cur.ChildMethods)
-  //         q.Enqueue(child);
-  //       
-  //       sb.Append($"Tracing for method {cur.Name} (thread: {this.Id}) (depth: {depth}) ");
-  //       sb.Append($"of class {cur.ClassName}. ");
-  //       sb.Append($"Execution time - {cur.Time}");
-  //       System.Console.WriteLine(sb.ToString());
-  //       if(cur.ChildMethods.Any())
-  //         depth++;
-  //     }
-  //     System.Console.WriteLine("===");
-  //   }
-  // }
-
 	internal void CreateNewDiagnostic(TraceDiagnostic traceDiagnostic)
 	{
 		Diagnostics.Push(traceDiagnostic);

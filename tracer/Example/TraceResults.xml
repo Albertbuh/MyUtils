@@ -1,107 +1,103 @@
 <root>
   <Threads>
-    <Id>10</Id>
-    <Time>2200ms</Time>
+    <Id>4</Id>
+    <Time>101ms</Time>
     <Methods>
       <Methods>
         <Name>RunMethodForTrace</Name>
         <ClassName>Foo</ClassName>
-        <Time>1100ms</Time>
+        <Time>51ms</Time>
       </Methods>
     </Methods>
     <Methods>
       <Methods>
         <Name>RunMethodForTrace</Name>
         <ClassName>Foo</ClassName>
-        <Time>1100ms</Time>
-      </Methods>
-    </Methods>
-  </Threads>
-  <Threads>
-    <Id>9</Id>
-    <Time>1102ms</Time>
-    <Methods>
-      <Methods>
-        <Name>RunMethodForTrace</Name>
-        <ClassName>Foo</ClassName>
-        <Time>1102ms</Time>
+        <Time>50ms</Time>
       </Methods>
     </Methods>
   </Threads>
   <Threads>
     <Id>7</Id>
-    <Time>1102ms</Time>
+    <Time>56ms</Time>
     <Methods>
       <Methods>
         <Name>RunMethodForTrace</Name>
         <ClassName>Foo</ClassName>
-        <Time>1102ms</Time>
-      </Methods>
-    </Methods>
-  </Threads>
-  <Threads>
-    <Id>11</Id>
-    <Time>1102ms</Time>
-    <Methods>
-      <Methods>
-        <Name>RunMethodForTrace</Name>
-        <ClassName>Foo</ClassName>
-        <Time>1102ms</Time>
-      </Methods>
-    </Methods>
-  </Threads>
-  <Threads>
-    <Id>4</Id>
-    <Time>1102ms</Time>
-    <Methods>
-      <Methods>
-        <Name>RunMethodForTrace</Name>
-        <ClassName>Foo</ClassName>
-        <Time>1102ms</Time>
+        <Time>56ms</Time>
       </Methods>
     </Methods>
   </Threads>
   <Threads>
     <Id>8</Id>
-    <Time>1102ms</Time>
+    <Time>55ms</Time>
     <Methods>
       <Methods>
         <Name>RunMethodForTrace</Name>
         <ClassName>Foo</ClassName>
-        <Time>1102ms</Time>
-      </Methods>
-    </Methods>
-  </Threads>
-  <Threads>
-    <Id>12</Id>
-    <Time>1102ms</Time>
-    <Methods>
-      <Methods>
-        <Name>RunMethodForTrace</Name>
-        <ClassName>Foo</ClassName>
-        <Time>1102ms</Time>
+        <Time>55ms</Time>
       </Methods>
     </Methods>
   </Threads>
   <Threads>
     <Id>6</Id>
-    <Time>1102ms</Time>
+    <Time>56ms</Time>
     <Methods>
       <Methods>
         <Name>RunMethodForTrace</Name>
         <ClassName>Foo</ClassName>
-        <Time>1102ms</Time>
+        <Time>56ms</Time>
       </Methods>
     </Methods>
   </Threads>
   <Threads>
-    <Id>13</Id>
-    <Time>1100ms</Time>
+    <Id>9</Id>
+    <Time>106ms</Time>
     <Methods>
       <Methods>
         <Name>RunMethodForTrace</Name>
         <ClassName>Foo</ClassName>
-        <Time>1100ms</Time>
+        <Time>55ms</Time>
+      </Methods>
+    </Methods>
+    <Methods>
+      <Methods>
+        <Name>RunMethodForTrace</Name>
+        <ClassName>Foo</ClassName>
+        <Time>51ms</Time>
+      </Methods>
+    </Methods>
+  </Threads>
+  <Threads>
+    <Id>11</Id>
+    <Time>56ms</Time>
+    <Methods>
+      <Methods>
+        <Name>RunMethodForTrace</Name>
+        <ClassName>Foo</ClassName>
+        <Time>56ms</Time>
+      </Methods>
+    </Methods>
+  </Threads>
+  <Threads>
+    <Id>12</Id>
+    <Time>56ms</Time>
+    <Methods>
+      <Methods>
+        <Name>RunMethodForTrace</Name>
+        <ClassName>Foo</ClassName>
+        <Time>56ms</Time>
+      </Methods>
+    </Methods>
+  </Threads>
+  <Threads>
+    <Id>10</Id>
+    <Time>56ms</Time>
+    <Methods>
+      <Methods>
+        <Name>RunMethodForTrace</Name>
+        <ClassName>Foo</ClassName>
+        <Time>56ms</Time>
       </Methods>
     </Methods>
   </Threads>

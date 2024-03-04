@@ -1,4 +1,4 @@
-namespace Tracer.Serialization;
+namespace Tracer.Core.Serialization;
 
 public class XmlSerializer : ITraceResultSerializer
 {

@@ -1,5 +1,5 @@
 ﻿using Tracer.Core;
-using Tracer.Serialization;
+using Tracer.Core.Serialization;
 
 ITracer tracer = new Tracer.Core.Tracer();
 var foo = new Foo(tracer);
@@ -8,14 +8,10 @@ var locker = new object();
 var tasks = new Task[threadsAmount];
     for(int i = 1; i <= threadsAmount; i++)
     {
-     lock(locker)
-     {
-       tasks[i-1] = new Task(() => 
-          {
-          System.Console.WriteLine($"Time for thread {i-1} = {100 * i}");
-          foo.RunMethodForTrace(100 * i);
-          });
-     }
+     tasks[i-1] = new Task(() => 
+        {
+        foo.RunMethodForTrace(50);
+        });
     }
 Parallel.ForEach(tasks, (t) => { t.Start(); });
 Task.WaitAll(tasks);

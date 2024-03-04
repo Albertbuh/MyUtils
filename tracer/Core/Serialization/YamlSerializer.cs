@@ -1,5 +1,4 @@
-
-namespace Tracer.Serialization;
+namespace Tracer.Core.Serialization;
 
 public class YamlSerializer : ITraceResultSerializer
 {

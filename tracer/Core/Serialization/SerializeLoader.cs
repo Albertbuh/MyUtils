@@ -1,11 +1,11 @@
 using System.Reflection;
-namespace Tracer.Serialization;
+namespace Tracer.Core.Serialization;
 
 public sealed class SerializeLoader
 {
   public void Serialize(TraceResult result, string fileName)
   {
-    var asm = Assembly.LoadFrom("./bin/Debug/net8.0/Serialization.dll");
+    var asm = Assembly.LoadFrom("./bin/Debug/net8.0/Core.dll");
     var type = typeof(ITraceResultSerializer);
     var types = asm.GetTypes()
     .Where(p => type.IsAssignableFrom(p) && !p.IsInterface);

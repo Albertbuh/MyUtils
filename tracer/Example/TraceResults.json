@@ -1,135 +1,129 @@
 {
   "Threads": [
     {
-      "Id": 10,
-      "Time": "2200ms",
+      "Id": 4,
+      "Time": "101ms",
       "Methods": [
         [
           {
-            "ChildMethods": [],
             "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "1100ms"
+            "Time": "51ms",
+            "ChildMethods": []
           }
         ],
         [
           {
-            "ChildMethods": [],
             "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "1100ms"
-          }
-        ]
-      ]
-    },
-    {
-      "Id": 9,
-      "Time": "1102ms",
-      "Methods": [
-        [
-          {
-            "ChildMethods": [],
-            "Name": "RunMethodForTrace",
-            "ClassName": "Foo",
-            "Time": "1102ms"
+            "Time": "50ms",
+            "ChildMethods": []
           }
         ]
       ]
     },
     {
       "Id": 7,
-      "Time": "1102ms",
+      "Time": "56ms",
       "Methods": [
         [
           {
-            "ChildMethods": [],
             "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "1102ms"
-          }
-        ]
-      ]
-    },
-    {
-      "Id": 11,
-      "Time": "1102ms",
-      "Methods": [
-        [
-          {
-            "ChildMethods": [],
-            "Name": "RunMethodForTrace",
-            "ClassName": "Foo",
-            "Time": "1102ms"
-          }
-        ]
-      ]
-    },
-    {
-      "Id": 4,
-      "Time": "1102ms",
-      "Methods": [
-        [
-          {
-            "ChildMethods": [],
-            "Name": "RunMethodForTrace",
-            "ClassName": "Foo",
-            "Time": "1102ms"
+            "Time": "56ms",
+            "ChildMethods": []
           }
         ]
       ]
     },
     {
       "Id": 8,
-      "Time": "1102ms",
+      "Time": "55ms",
       "Methods": [
         [
           {
-            "ChildMethods": [],
             "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "1102ms"
-          }
-        ]
-      ]
-    },
-    {
-      "Id": 12,
-      "Time": "1102ms",
-      "Methods": [
-        [
-          {
-            "ChildMethods": [],
-            "Name": "RunMethodForTrace",
-            "ClassName": "Foo",
-            "Time": "1102ms"
+            "Time": "55ms",
+            "ChildMethods": []
           }
         ]
       ]
     },
     {
       "Id": 6,
-      "Time": "1102ms",
+      "Time": "56ms",
       "Methods": [
         [
           {
-            "ChildMethods": [],
             "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "1102ms"
+            "Time": "56ms",
+            "ChildMethods": []
           }
         ]
       ]
     },
     {
-      "Id": 13,
-      "Time": "1100ms",
+      "Id": 9,
+      "Time": "106ms",
       "Methods": [
         [
           {
-            "ChildMethods": [],
             "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "1100ms"
+            "Time": "55ms",
+            "ChildMethods": []
+          }
+        ],
+        [
+          {
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "51ms",
+            "ChildMethods": []
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 11,
+      "Time": "56ms",
+      "Methods": [
+        [
+          {
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "56ms",
+            "ChildMethods": []
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 12,
+      "Time": "56ms",
+      "Methods": [
+        [
+          {
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "56ms",
+            "ChildMethods": []
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 10,
+      "Time": "56ms",
+      "Methods": [
+        [
+          {
+            "Name": "RunMethodForTrace",
+            "ClassName": "Foo",
+            "Time": "56ms",
+            "ChildMethods": []
           }
         ]
       ]
