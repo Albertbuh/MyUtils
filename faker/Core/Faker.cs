@@ -41,31 +41,46 @@ public class Faker
     };
   }
   
-  public T Create<T>()
+  public T? Create<T>()
   {
-    return (T)Create(typeof(T));
+    var result = Create(typeof(T));
+    return result != null ? (T)result : default(T);
   }
 
   private object? Create(Type t)
   {
-    var constructors = t.GetConstructors(
-      BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public
-    ).OrderByDescending((ConstructorInfo info) => info.GetParameters().Length);
-    foreach(var constructor in constructors)
-    {
-      try {
-        var result = FillByConstructor(constructor);
-        return result;
-      }
-      catch(Exception e)
-      {
-        System.Console.WriteLine("Smthing went wrong in constructor with {0} params:{1}", constructor.GetParameters().Length, e);
-      }
-    }
+    object? result;
+    if(TryToCreateValueType(t, out result) || TryToCreateByConstructors(t, out result))
+      return result;
     return null;
   }
 
-  private object FillByConstructor(ConstructorInfo constructorInfo)
+  private bool TryToCreateValueType(Type t, out object? result)
+  {
+    result = GetGeneratorByType(t)?.Generate(t) ?? null;
+    return result != null;
+  }
+
+  private bool TryToCreateByConstructors(Type t, out object? result)
+  {
+    var constructors = t.GetConstructors(
+      BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public
+    ).OrderByDescending((ConstructorInfo info) => info.GetParameters().Length);
+    result = null;
+    foreach(var constructor in constructors)
+    {
+      if(result != null)
+        break;
+      try 
+      {
+        result = FillWithConstructor(constructor);
+      }
+      catch{}
+    }
+    return result != null;
+  }
+
+  private object FillWithConstructor(ConstructorInfo constructorInfo)
   {
     var parameters = constructorInfo.GetParameters();
     var filledParams = new object[parameters.Length];
@@ -74,9 +89,17 @@ public class Faker
       var pType = parameters[i].ParameterType;
       var generator = GetGeneratorByType(pType);
       if(generator != null)
-        filledParams[i] = generator.Generate(pType);
-      else
-        throw new NotImplementedException("When generator is null we need to do recursion descend");
+      {
+         filledParams[i] = generator.Generate(pType);
+         System.Console.WriteLine($"Cast parameter({parameters[i].Name}) of type {pType}");
+      }
+      else //we has class type
+      {
+        if(constructorInfo.DeclaringType != pType)
+           filledParams[i] = this.Create(pType) ?? new object();
+        else
+         System.Console.WriteLine($"Unable to cast parameter of type {pType}, it creates recursion");
+      }
     }
     return constructorInfo.Invoke(filledParams);
   }
