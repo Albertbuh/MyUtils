@@ -50,9 +50,18 @@ public class Faker
   private object? Create(Type t)
   {
     object? result;
-    if(TryToCreateValueType(t, out result) || TryToCreateByConstructors(t, out result))
+    if(TryToCreateValueType(t, out result))
       return result;
-    return null;
+
+    if(TryToCreateByConstructors(t, out result))
+    {
+      if(result != null)
+      {
+        UpdatePublicFields(result);
+        UpdatePublicProperties(result);
+      }
+    }
+    return result;
   }
 
   private bool TryToCreateValueType(Type t, out object? result)
@@ -61,6 +70,63 @@ public class Faker
     return result != null;
   }
 
+  
+
+  private object UpdatePublicProperties(object result)
+  {
+    var type = result.GetType();
+    foreach(PropertyInfo prop in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+    {
+      var pType = prop.PropertyType;
+      var generator = GetGeneratorByType(pType);
+      var value = prop.GetValue(result);
+      var isUnprocessed = (value == null) || (value.Equals(GetDefaultValue(pType)));
+      if(isUnprocessed)
+      {
+        if(generator != null)
+        {
+           prop.SetValue(result, generator.Generate(pType));
+           System.Console.WriteLine($"Cast property({prop.Name}) of type {pType}");
+        }
+        else if(pType != type)
+          prop.SetValue(result, this.Create(pType));
+        else
+           System.Console.WriteLine($"Unable to cast property({prop.Name}) of type {pType}, it creates recursion");
+      }
+    }
+    return result;
+  }
+  
+  private object UpdatePublicFields(object result)
+  {
+    var type = result.GetType();
+    foreach(var field in type.GetFields(BindingFlags.Instance | BindingFlags.Public))
+    {
+      var fType = field.FieldType;
+      var generator = GetGeneratorByType(fType);
+      var value = field.GetValue(result);
+      bool isUnprocessed = (value == null) || (value.Equals(GetDefaultValue(fType)));
+      if(generator != null)
+      {
+        if(isUnprocessed)
+        {
+           field.SetValue(result, generator.Generate(fType));
+           System.Console.WriteLine($"Cast field({field.Name}) of type {fType}");
+        }
+      }
+      else if(fType != type)
+      {
+        if(isUnprocessed)
+          field.SetValue(result, this.Create(fType));
+      }
+      else
+         System.Console.WriteLine($"Unable to cast field of type {type}, it creates recursion");
+    }
+    return result;
+  }
+
+  private static object? GetDefaultValue(Type t) => t.IsValueType ? Activator.CreateInstance(t) : null;
+  
   private bool TryToCreateByConstructors(Type t, out object? result)
   {
     var constructors = t.GetConstructors(
