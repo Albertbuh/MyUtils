@@ -3,46 +3,8 @@
 var faker = new Core.Faker();
 var person = faker.Create<Person>();
 System.Console.WriteLine(person.ToString());
-// PrintConstructors(typeof(Person));
 
-void PrintConstructors(Type myType)
-{
-    Console.WriteLine("Конструкторы:");
-    var constructors = myType.GetConstructors(
-            BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public
-        ).OrderByDescending((ConstructorInfo ci) => ci.GetParameters().Length);
-    foreach (ConstructorInfo ctor in constructors)
-    {
-        string modificator = "";
-
-        // получаем модификатор доступа
-        if (ctor.IsPublic)
-            modificator += "public";
-        else if (ctor.IsPrivate)
-            modificator += "private";
-        else if (ctor.IsAssembly)
-            modificator += "internal";
-        else if (ctor.IsFamily)
-            modificator += "protected";
-        else if (ctor.IsFamilyAndAssembly)
-            modificator += "private protected";
-        else if (ctor.IsFamilyOrAssembly)
-            modificator += "protected internal";
-
-        Console.Write($"{modificator} {myType.Name}(");
-        // получаем параметры конструктора
-        ParameterInfo[] parameters = ctor.GetParameters();
-        for (int i = 0; i < parameters.Length; i++)
-        {
-            var param = parameters[i];
-            Console.Write($"{param.ParameterType.Name} {param.Name}");
-            if (i < parameters.Length - 1)
-                Console.Write(", ");
-        }
-        Console.WriteLine(")");
-    }
-}
-
+person.PrintMoney();
 struct Person
 {
     public string Name { get; }
@@ -50,7 +12,9 @@ struct Person
     public Nutrition nuts;
     public long gender {get; set;}
     public byte Test;
-    public IEnumerable<int> money {get; set;}
+    public IEnumerable<long> money {get; set;}
+    public int g {get; set;}
+    public TimeOnly time;
     public Person(string name, int age, Nutrition n)
     {
         Name = name; Age = age; nuts = n;
@@ -59,7 +23,13 @@ struct Person
 
     public override string ToString()
     {
-      return $"{Name} -> {Age} -> {gender}\nNutrient info: {nuts.protein} -> {nuts.carbs} -> {nuts.fats}\n{Test} {money}";
+      return $"{Name} -> {Age} -> {gender}\nNutrient info: {nuts.protein} -> {nuts.carbs} -> {nuts.fats}\n{Test} {g}";
+    }
+
+    public void PrintMoney()
+    {
+      foreach(var m in money)
+        System.Console.WriteLine(m);
     }
 }
 

@@ -28,17 +28,19 @@ public class Faker
   {
     typeof(char), typeof(string)
   };
-  
-  Dictionary<Type[], IGenerator> generatorsCollection;
+
+  readonly IGenerator collectionGenerator;
+  Dictionary<Type[], IGenerator> simpleGeneratorsDictionary;
   public Faker()
   {
-    generatorsCollection = new Dictionary<Type[], IGenerator>()
+    simpleGeneratorsDictionary = new Dictionary<Type[], IGenerator>()
     {
       {intNumTypes, new IntegralNumberGenerator()},
       {floatNumTypes, new FloatPointNumberGenerator()},
       {datetimeTypes, new DateTimeGenerator()},
-      {stringTypes, new StringGenerator()}
+      {stringTypes, new StringGenerator()},
     };
+    collectionGenerator = new IEnumerableGenerator(simpleGeneratorsDictionary);
   }
   
   public T? Create<T>()
@@ -77,22 +79,29 @@ public class Faker
     var type = result.GetType();
     foreach(PropertyInfo prop in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
     {
-      var pType = prop.PropertyType;
-      var generator = GetGeneratorByType(pType);
-      var value = prop.GetValue(result);
-      var isUnprocessed = (value == null) || (value.Equals(GetDefaultValue(pType)));
-      if(isUnprocessed)
+      try
       {
-        if(generator != null)
+        var pType = prop.PropertyType;
+        var generator = GetGeneratorByType(pType);
+        var value = prop.GetValue(result);
+        var isUnprocessed = (value == null) || (value.Equals(GetDefaultValue(pType)));
+        if(isUnprocessed)
         {
-           prop.SetValue(result, generator.Generate(pType));
-           System.Console.WriteLine($"Cast property({prop.Name}) of type {pType}");
+          System.Console.WriteLine($"{prop.Name} --> {pType}");
+          if(generator != null)
+          {
+             prop.SetValue(result, generator.Generate(pType));
+             System.Console.WriteLine($"Cast property({prop.Name}) of type {pType}");
+          }
+          else if(pType != type)
+          {
+            prop.SetValue(result, this.Create(pType));
+          }
+          else
+             System.Console.WriteLine($"Unable to cast property({prop.Name}) of type {pType}, it creates recursion");
         }
-        else if(pType != type)
-          prop.SetValue(result, this.Create(pType));
-        else
-           System.Console.WriteLine($"Unable to cast property({prop.Name}) of type {pType}, it creates recursion");
       }
+      catch{}
     }
     return result;
   }
@@ -102,25 +111,28 @@ public class Faker
     var type = result.GetType();
     foreach(var field in type.GetFields(BindingFlags.Instance | BindingFlags.Public))
     {
-      var fType = field.FieldType;
-      var generator = GetGeneratorByType(fType);
-      var value = field.GetValue(result);
-      bool isUnprocessed = (value == null) || (value.Equals(GetDefaultValue(fType)));
-      if(generator != null)
+      try
       {
+        var fType = field.FieldType;
+        var generator = GetGeneratorByType(fType);
+        var value = field.GetValue(result);
+        bool isUnprocessed = (value == null) || (value.Equals(GetDefaultValue(fType)));
         if(isUnprocessed)
         {
-           field.SetValue(result, generator.Generate(fType));
-           System.Console.WriteLine($"Cast field({field.Name}) of type {fType}");
-        }
+          if(generator != null)
+          {
+             field.SetValue(result, generator.Generate(fType));
+             System.Console.WriteLine($"Cast field({field.Name}) of type {fType}");
+          }
+          else if(fType != type)
+          {
+            field.SetValue(result, this.Create(fType));
+          }
+          else
+            System.Console.WriteLine($"Unable to cast field({field.Name}) of type {fType}, it creates recursion");
+        }  
       }
-      else if(fType != type)
-      {
-        if(isUnprocessed)
-          field.SetValue(result, this.Create(fType));
-      }
-      else
-         System.Console.WriteLine($"Unable to cast field of type {type}, it creates recursion");
+      catch{}
     }
     return result;
   }
@@ -172,11 +184,13 @@ public class Faker
 
   private IGenerator? GetGeneratorByType(Type t)
   {
-    foreach(var key in generatorsCollection.Keys)
+    foreach(var key in simpleGeneratorsDictionary.Keys)
     {
       if(key.Contains(t))
-        return generatorsCollection[key];
+        return simpleGeneratorsDictionary[key];
     }
+    if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+      return collectionGenerator;
     return null;
   }
 }
