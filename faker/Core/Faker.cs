@@ -31,6 +31,15 @@ public class Faker
 
   readonly IGenerator collectionGenerator;
   Dictionary<Type[], IGenerator> simpleGeneratorsDictionary;
+  
+  readonly FakerConfig? config;
+  
+  public Faker(FakerConfig config)
+    :this()
+  {
+    this.config = config;
+  }
+  
   public Faker()
   {
     simpleGeneratorsDictionary = new Dictionary<Type[], IGenerator>()
@@ -76,7 +85,9 @@ public class Faker
 
   private object UpdatePublicProperties(object result)
   {
+    UpdateByConfig<PropertyInfo>(result);
     var type = result.GetType();
+    
     foreach(PropertyInfo prop in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
     {
       try
@@ -106,8 +117,35 @@ public class Faker
     return result;
   }
   
+  private void UpdateByConfig<T>(object result)
+    where T: MemberInfo
+  {
+    if(config != null)
+    {
+      foreach(var item in config.items)
+      {
+        if(item.ObjectType.Equals(result.GetType())) 
+        {
+          var member = item.Expression.Member as T;   
+          if(member != null)
+          {
+            try
+            {
+              if(member is FieldInfo field)
+                field.SetValue(result, item.Generator.Generate(field.FieldType));
+              else if(member is PropertyInfo prop)
+                prop.SetValue(result, item.Generator.Generate(prop.PropertyType));
+            }
+            catch{}
+          }
+        }
+      }
+    }
+  }
+  
   private object UpdatePublicFields(object result)
   {
+    UpdateByConfig<FieldInfo>(result);   
     var type = result.GetType();
     foreach(var field in type.GetFields(BindingFlags.Instance | BindingFlags.Public))
     {
@@ -168,8 +206,11 @@ public class Faker
       var generator = GetGeneratorByType(pType);
       if(generator != null)
       {
+        if(!TryToUpdateByConfig(constructorInfo.DeclaringType!, parameters[i], ref filledParams[i]))
+        {
          filledParams[i] = generator.Generate(pType);
-         System.Console.WriteLine($"Cast parameter({parameters[i].Name}) of type {pType}");
+        }
+        System.Console.WriteLine($"Cast parameter({parameters[i].Name}) of type {pType}");
       }
       else //we has class type
       {
@@ -181,7 +222,25 @@ public class Faker
     }
     return constructorInfo.Invoke(filledParams);
   }
-
+  
+  private bool TryToUpdateByConfig(Type objType, ParameterInfo parameter, ref object filled)
+  {
+    if(config == null)
+      return false;
+    
+    var obj = config.items.SingleOrDefault(ci => ci.ObjectType.Equals(objType));
+    if(!obj.Equals(default(ConfigItem)))
+    {
+      var member = obj.Expression.Member as MemberInfo;
+      if(parameter.Name != null && string.Compare(parameter.Name, member.Name, true) == 0)
+      {
+        filled = obj.Generator.Generate(parameter.ParameterType);
+        return true;
+      }
+    }
+    return false;
+  }
+  
   private IGenerator? GetGeneratorByType(Type t)
   {
     foreach(var key in simpleGeneratorsDictionary.Keys)
