@@ -2,18 +2,41 @@ namespace Core.Models;
 
 public class FieldModel : TypeMember, IBrowserModel
 {
-	FieldInfo info;
-	public string Name => info.Name;
-	public Type Type => info.FieldType;
+	FieldInfo field;
+	public string Name => field.Name;
+	public Type Type => field.FieldType;
   public string ShortTypeName => GetShortName(Type);
 
 	public FieldModel(FieldInfo info)
 	{
-		this.info = info;
+		this.field = info;
 	}
 
 	public override string ToString()
 	{
-		return $"{Name}: {ShortTypeName}";
+		return $"{GetModificator()}{ShortTypeName} {Name}";
 	}
+
+  public string GetModificator()
+  {
+    string modificator = "";
+
+    if (field.IsPublic)
+        modificator += "public ";
+    else if (field.IsPrivate)
+        modificator += "private ";
+    else if (field.IsAssembly)
+        modificator += "internal ";
+    else if (field.IsFamily)
+        modificator += "protected ";
+    else if (field.IsFamilyAndAssembly)
+        modificator += "private protected ";
+    else if (field.IsFamilyOrAssembly)
+        modificator += "protected internal ";
+
+    if(field.IsStatic)
+      modificator += "static ";
+
+    return modificator;
+  }
 }
