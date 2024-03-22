@@ -1,0 +1,12 @@
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/bin/Debug/net8.0/Core.deps.json
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/bin/Debug/net8.0/Core.dll
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/bin/Debug/net8.0/Core.pdb
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/obj/Debug/net8.0/Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/obj/Debug/net8.0/Core.AssemblyInfoInputs.cache
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/obj/Debug/net8.0/Core.AssemblyInfo.cs
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/obj/Debug/net8.0/Core.csproj.CoreCompileInputs.cache
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/obj/Debug/net8.0/Core.sourcelink.json
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/obj/Debug/net8.0/Core.dll
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/obj/Debug/net8.0/refint/Core.dll
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/obj/Debug/net8.0/Core.pdb
+/home/albertbuh/projects/dotnet/myUtils/assemblyBrowser/Core/obj/Debug/net8.0/ref/Core.dll
