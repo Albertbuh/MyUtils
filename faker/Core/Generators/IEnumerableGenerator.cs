@@ -4,6 +4,8 @@ public class IEnumerableGenerator : IGenerator
 {
 	Random random = new();
 	Dictionary<Type[], IGenerator> generators;
+  const int minLength = 5;
+  const int maxLength = 15;
 
 	public IEnumerableGenerator(Dictionary<Type[], IGenerator> generators)
 	{
@@ -20,7 +22,7 @@ public class IEnumerableGenerator : IGenerator
 		if (generator != null)
 		{
 			var data = Enumerable
-				.Range(0, random.Next(5, 10))
+				.Range(0, random.Next(minLength, maxLength))
 				.Select(_ => generator.Generate(elementType))
 				.ToList();
 			return ConvertToTypedEnumerable(data, elementType);
