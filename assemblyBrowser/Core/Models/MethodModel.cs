@@ -5,6 +5,7 @@ public class MethodModel : TypeMember, IBrowserModel
 	MethodInfo method;
 	public string Name => method.Name;
 	public Type Type => method.ReturnType;
+  public string Modificator => GetModificator();
 
 	public MethodModel(MethodInfo info)
 	{
@@ -14,7 +15,7 @@ public class MethodModel : TypeMember, IBrowserModel
 	public override string ToString()
 	{
 		var sb = new StringBuilder();
-		sb.Append($"{GetModificator()}{GetShortName(Type)} {Name}");
+		sb.Append($"{Modificator}{GetShortName(Type)} {Name}");
 		var parameters = method.GetParameters();
 
 		sb.Append("(");

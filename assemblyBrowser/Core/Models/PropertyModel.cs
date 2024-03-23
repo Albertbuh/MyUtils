@@ -5,6 +5,7 @@ public class PropertyModel : TypeMember, IBrowserModel
 	PropertyInfo prop;
 	public string Name => prop.Name;
 	public Type Type => prop.PropertyType;
+  public string Modificator => GetModificator();
 
 	public PropertyModel(PropertyInfo info)
 	{
@@ -13,7 +14,7 @@ public class PropertyModel : TypeMember, IBrowserModel
 
 	public override string ToString()
 	{
-		return $"{GetModificator()}{GetShortName(Type)} {Name}";
+		return $"{Modificator}{GetShortName(Type)} {Name}";
 	}
 
   public string GetModificator()

@@ -6,6 +6,7 @@ public class FieldModel : TypeMember, IBrowserModel
 	public string Name => field.Name;
 	public Type Type => field.FieldType;
   public string ShortTypeName => GetShortName(Type);
+  public string Modificator => GetModificator();
 
 	public FieldModel(FieldInfo info)
 	{
@@ -14,7 +15,7 @@ public class FieldModel : TypeMember, IBrowserModel
 
 	public override string ToString()
 	{
-		return $"{GetModificator()}{ShortTypeName} {Name}";
+		return $"{Modificator}{ShortTypeName} {Name}";
 	}
 
   public string GetModificator()
