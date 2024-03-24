@@ -4,9 +4,10 @@ public class AssemblyBrowser
 {
 	AssemblyModel? assembly;
 
-	public void LoadFrom(string filepath)
+	public AssemblyModel LoadFrom(string filepath)
 	{
 		assembly = new AssemblyModel(Assembly.LoadFrom(filepath));
+		return assembly;
 	}
 
 	public string? GetAssemblyInfo()

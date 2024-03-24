@@ -5,7 +5,7 @@ public class PropertyModel : TypeMember, IBrowserModel
 	PropertyInfo prop;
 	public string Name => prop.Name;
 	public Type Type => prop.PropertyType;
-  public string Modificator => GetModificator();
+    public string Modificator => GetModificator();
 
 	public PropertyModel(PropertyInfo info)
 	{

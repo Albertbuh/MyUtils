@@ -4,6 +4,15 @@ public class AssemblyModel : IBrowserModel
 {
 	private Assembly assembly;
 	private HashSet<NamespaceModel> members;
+	public List<NamespaceModel> Members => members.ToList();
+	public string Name
+	{
+		get
+		{
+            var name = assembly.FullName ?? "";
+            return $"{name.Substring(0, name.IndexOf(","))} DLL";
+        }
+    }
 
 	public AssemblyModel(Assembly assembly)
 	{
@@ -31,8 +40,7 @@ public class AssemblyModel : IBrowserModel
 	public override string ToString()
 	{
 		var sb = new StringBuilder();
-		var name = assembly.FullName ?? "";
-		sb.AppendLine($"{name.Substring(0, name.IndexOf(","))} DLL");
+		sb.AppendLine(this.Name);
 		foreach (var member in members)
 			sb.Append($"  {member}");
 

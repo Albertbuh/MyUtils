@@ -3,7 +3,9 @@ namespace Core.Models;
 public class TypeModel : IBrowserModel
 {
 	string name;
-	List<IBrowserModel> members;
+	public string Name => name;
+	List<TypeMember> members;
+	public List<TypeMember> Members => members;
 
 	public TypeModel(string name, List<MemberInfo> membersInfo)
 	{
@@ -11,9 +13,9 @@ public class TypeModel : IBrowserModel
 		this.members = FillMembers(membersInfo);
 	}
 
-	public List<IBrowserModel> FillMembers(List<MemberInfo> membersInfo)
+	public List<TypeMember> FillMembers(List<MemberInfo> membersInfo)
 	{
-		var result = new List<IBrowserModel>();
+		var result = new List<TypeMember>();
 		foreach (var member in membersInfo)
 		{
 			switch (member.MemberType)
