@@ -2,6 +2,10 @@ namespace Core.Models;
 
 public abstract class TypeMember
 {
+  public abstract string Name { get; }
+  public abstract string Modificator { get; }
+  public abstract Type Type { get; }
+  
 	protected string GetShortName(Type type)
 	{
 		if (type.IsGenericType)

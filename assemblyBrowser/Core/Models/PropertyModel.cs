@@ -3,9 +3,9 @@ namespace Core.Models;
 public class PropertyModel : TypeMember, IBrowserModel
 {
 	PropertyInfo prop;
-	public string Name => prop.Name;
-	public Type Type => prop.PropertyType;
-    public string Modificator => GetModificator();
+	public override string Name => prop.Name;
+	public override Type Type => prop.PropertyType;
+  public override string Modificator => GetModificator();
 
 	public PropertyModel(PropertyInfo info)
 	{
@@ -39,6 +39,7 @@ public class PropertyModel : TypeMember, IBrowserModel
       if(propGet.IsStatic)
         modificator += "static ";
     }
+    
 
     return modificator;
   }

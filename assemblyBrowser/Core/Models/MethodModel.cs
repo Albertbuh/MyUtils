@@ -3,9 +3,9 @@ namespace Core.Models;
 public class MethodModel : TypeMember, IBrowserModel
 {
 	MethodInfo method;
-	public string Name => method.Name;
-	public Type Type => method.ReturnType;
-  public string Modificator => GetModificator();
+	public override string Name => method.Name;
+	public override Type Type => method.ReturnType;
+  public override string Modificator => GetModificator();
 
 	public MethodModel(MethodInfo info)
 	{

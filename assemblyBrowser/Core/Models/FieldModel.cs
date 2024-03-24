@@ -3,10 +3,10 @@ namespace Core.Models;
 public class FieldModel : TypeMember, IBrowserModel
 {
 	FieldInfo field;
-	public string Name => field.Name;
-	public Type Type => field.FieldType;
+	public override string Name => field.Name;
+	public override Type Type => field.FieldType;
   public string ShortTypeName => GetShortName(Type);
-  public string Modificator => GetModificator();
+  public override string Modificator => GetModificator();
 
 	public FieldModel(FieldInfo info)
 	{
