@@ -1,17 +1,30 @@
-namespace Core;
+namespace Core.Compilers;
 
-internal class TestsCompiler
+internal abstract class TestsCompiler
 {
-  public CompilationUnitSyntax GenerateCodeByItem(Core.Models.GenerateItem item)
+  protected abstract string TestAttributeIdentifier { get; }
+  
+  public virtual CompilationUnitSyntax GenerateCodeByItem(Core.Models.GenerateItem item)
     => SyntaxFactory.CompilationUnit()
     .WithMembers(
         SyntaxFactory.SingletonList<MemberDeclarationSyntax>(
-          GenerateClass(item)
+          item.NamespaceItem != null 
+          ? GenerateNamespace(item) 
+          : GenerateClass(item)
           )
         )
     .NormalizeWhitespace();
 
-  private ClassDeclarationSyntax GenerateClass(Core.Models.GenerateItem item)
+  protected FileScopedNamespaceDeclarationSyntax GenerateNamespace(Core.Models.GenerateItem item)
+    => SyntaxFactory.FileScopedNamespaceDeclaration(
+        SyntaxFactory.IdentifierName($"{item.NamespaceName}.Tests")
+        ).WithMembers(
+          SyntaxFactory.SingletonList<MemberDeclarationSyntax>(
+            GenerateClass(item)
+            )
+          );
+
+  protected virtual ClassDeclarationSyntax GenerateClass(Core.Models.GenerateItem item)
   {
     var list = new List<MemberDeclarationSyntax>();
     foreach(var method in item.Methods)
@@ -25,7 +38,7 @@ internal class TestsCompiler
     .WithMembers(new SyntaxList<MemberDeclarationSyntax>(list));
   }
 
-  private MemberDeclarationSyntax GenerateTestMethod(string name)
+  protected MemberDeclarationSyntax GenerateTestMethod(string name)
     => SyntaxFactory.MethodDeclaration
         (
           SyntaxFactory.PredefinedType
@@ -34,11 +47,11 @@ internal class TestsCompiler
           ),
           SyntaxFactory.Identifier(name)
         )
-        .WithAttributeLists(GenerateAttributeList("Fact"))
+        .WithAttributeLists(GenerateAttributeList(this.TestAttributeIdentifier))
         .WithModifiers(GenerateModifier(SyntaxKind.PublicKeyword))
         .WithBody(GenerateBlock());
   
-  private SyntaxList<AttributeListSyntax> GenerateAttributeList(string identifier)
+  protected SyntaxList<AttributeListSyntax> GenerateAttributeList(string identifier)
     => SyntaxFactory.SingletonList<AttributeListSyntax>
     (
       SyntaxFactory.AttributeList(
@@ -51,12 +64,12 @@ internal class TestsCompiler
         )
     );
 
-  private SyntaxTokenList GenerateModifier(SyntaxKind kind) => SyntaxFactory.TokenList(
+  protected SyntaxTokenList GenerateModifier(SyntaxKind kind) => SyntaxFactory.TokenList(
       SyntaxFactory.Token(kind)
       );
   
 
-  private BlockSyntax GenerateBlock()
+  protected BlockSyntax GenerateBlock()
   {
     var argument = SyntaxFactory.Argument(
         SyntaxFactory.LiteralExpression(

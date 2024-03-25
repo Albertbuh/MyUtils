@@ -6,8 +6,14 @@ public class TestsGenerator
   
   public TestsGenerator()
   {
-    compiler = new TestsCompiler();
+    compiler = TestsCompilerFactory.Create(Compilers.GeneratorCompilersEnum.XUnit);
   }
+
+  public TestsGenerator(Compilers.GeneratorCompilersEnum compilerType)
+  {
+    this.compiler = TestsCompilerFactory.Create(compilerType);
+  }
+
 
   public void GenerateAsync(IEnumerable<string> pathsToFiles, string pathToLoad)
   {
