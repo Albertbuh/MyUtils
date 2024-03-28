@@ -4,44 +4,30 @@ internal abstract class TestsCompiler
 {
     protected abstract string TestAttributeIdentifier { get; }
 
-    public virtual CompilationUnitSyntax GenerateCodeByItem(Core.Models.GenerateItem item)
-    {
-        return GenerateSimpleCode(item);
-    }
-
-    protected CompilationUnitSyntax GenerateSimpleCode(Core.Models.GenerateItem item) =>
+    public virtual CompilationUnitSyntax GenerateCodeByItem(Core.Models.GenerateItem item) =>
         SyntaxFactory
             .CompilationUnit()
             .WithMembers(
                 SyntaxFactory.SingletonList<MemberDeclarationSyntax>(
-                    item.NamespaceItem != null ? 
-                    GenerateNamespace(item)
-                    .WithMembers(
-                        SyntaxFactory.SingletonList<MemberDeclarationSyntax>(GenerateClass(item))
-                    )
-                    : GenerateClass(item)
+                    item.NamespaceItem != null
+                        ? GenerateNamespace(item)
+                            .WithMembers(
+                                SyntaxFactory.SingletonList<MemberDeclarationSyntax>(
+                                    GenerateClass(item)
+                                )
+                            )
+                        : GenerateClass(item)
                 )
             )
             .NormalizeWhitespace();
 
-    protected virtual SyntaxList<UsingDirectiveSyntax> GenerateUsings(Core.Models.GenerateItem item)
-    {
-        var usingList = new List<UsingDirectiveSyntax>();
-        usingList.Add(GenerateUsing("Moq"));
-        usingList.Add(GenerateUsing(item.NamespaceName!));
-        return new SyntaxList<UsingDirectiveSyntax>(usingList);
-    }
-
-    protected UsingDirectiveSyntax GenerateUsing(string name) =>
-        SyntaxFactory.UsingDirective(SyntaxFactory.IdentifierName(name));
-
+    
     protected FileScopedNamespaceDeclarationSyntax GenerateNamespace(
         Core.Models.GenerateItem item
     ) =>
-        SyntaxFactory
-            .FileScopedNamespaceDeclaration(
-                SyntaxFactory.IdentifierName($"{item.NamespaceName}.Tests")
-            );
+        SyntaxFactory.FileScopedNamespaceDeclaration(
+            SyntaxFactory.IdentifierName($"{item.NamespaceName}.Tests")
+        );
 
     protected virtual ClassDeclarationSyntax GenerateClass(Core.Models.GenerateItem item)
     {
@@ -58,23 +44,6 @@ internal abstract class TestsCompiler
             .WithMembers(new SyntaxList<MemberDeclarationSyntax>(list));
     }
 
-    protected FieldDeclarationSyntax GenerateField(
-        string type,
-        string name,
-        SyntaxKind kind = SyntaxKind.PrivateKeyword
-    ) =>
-        SyntaxFactory
-            .FieldDeclaration(
-                SyntaxFactory
-                    .VariableDeclaration(SyntaxFactory.IdentifierName(name))
-                    .WithVariables(
-                        SyntaxFactory.SingletonSeparatedList<VariableDeclaratorSyntax>(
-                            (SyntaxFactory.VariableDeclarator(SyntaxFactory.Identifier(name)))
-                        )
-                    )
-            )
-            .WithModifiers(GenerateModifier(kind));
-
     protected MemberDeclarationSyntax GenerateTestMethod(string name) =>
         SyntaxFactory
             .MethodDeclaration(
@@ -83,8 +52,7 @@ internal abstract class TestsCompiler
             )
             .WithAttributeLists(GenerateAttributeList(this.TestAttributeIdentifier))
             .WithModifiers(GenerateModifier(SyntaxKind.PublicKeyword))
-            .WithBody(GenerateSimpleBlock());
-
+            .WithBody(GenerateBlock());
 
     protected SyntaxList<AttributeListSyntax> GenerateAttributeList(string identifier) =>
         SyntaxFactory.SingletonList<AttributeListSyntax>(
@@ -105,9 +73,9 @@ internal abstract class TestsCompiler
     protected IdentifierNameSyntax GenerateIdentifierName(string identifier) =>
         SyntaxFactory.IdentifierName(identifier);
 
-    protected SyntaxToken GenerateToke(SyntaxKind kind) => SyntaxFactory.Token(kind);
+    protected SyntaxToken GenerateToken(SyntaxKind kind) => SyntaxFactory.Token(kind);
 
-    protected BlockSyntax GenerateSimpleBlock()
+    protected BlockSyntax GenerateBlock()
     {
         var argument = SyntaxFactory.Argument(
             SyntaxFactory.LiteralExpression(
@@ -134,5 +102,4 @@ internal abstract class TestsCompiler
 
         return SyntaxFactory.Block(expression);
     }
-
 }
