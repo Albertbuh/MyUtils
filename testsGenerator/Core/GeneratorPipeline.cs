@@ -30,7 +30,9 @@ internal class GenerationPipeline
         loadTestClassToFileBlock = new(loadTestClassToFileFunc, defaultExecutionOptions);
 
         loadClassInMemoryBlock.LinkTo(generateTestClassBlock, defaultLinkOptions);
+        loadClassInMemoryBlock.Completion.ContinueWith(task => generateTestClassBlock.Complete());
         generateTestClassBlock.LinkTo(loadTestClassToFileBlock, defaultLinkOptions);
+        generateTestClassBlock.Completion.ContinueWith(task => loadTestClassToFileBlock.Complete());
     }
 
     public async Task SendAsync(string path)
@@ -51,7 +53,7 @@ internal class GenerationPipeline
         System.Console.WriteLine("Wait of completion");
         try
         {
-            await loadClassInMemoryBlock.Completion.WaitAsync(CancellationToken.None);
+            await loadTestClassToFileBlock.Completion.WaitAsync(CancellationToken.None);
             result = true;
             System.Console.WriteLine("Completed");
         }
@@ -68,7 +70,7 @@ internal class GenerationPipeline
         loadClassInMemoryBlock.Complete();
         try
         {
-            loadClassInMemoryBlock.Completion.Wait();
+            loadTestClassToFileBlock.Completion.Wait();
             result = true;
         }
         catch { }

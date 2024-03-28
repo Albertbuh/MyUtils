@@ -3,6 +3,7 @@ namespace Core;
 public class TestsGenerator
 {
     TestsCompiler compiler;
+    private string directoryToLoadTests = @"./tests";
 
     public TestsGenerator()
     {
@@ -18,6 +19,7 @@ public class TestsGenerator
     {
         if (!Directory.Exists(pathToLoad))
             Directory.CreateDirectory(pathToLoad);
+        directoryToLoadTests = pathToLoad;
 
         var pipeline = new GenerationPipeline(LoadClassInfoInMemory, GenerateTestClass, LoadToFile);
         foreach (var path in pathsToFiles)
@@ -25,7 +27,8 @@ public class TestsGenerator
             // await pipeline.SendAsync(path);
             pipeline.Post(path);
         }
-        await pipeline.CompleteAsync();
+        //await pipeline.CompleteAsync();
+        pipeline.Complete();
 
         System.Console.WriteLine("Tests uploaded");
     }
@@ -67,6 +70,7 @@ public class TestsGenerator
     private Core.Models.GenerateItem GenerateTestClass(Core.Models.GenerateItem item)
     {
         item.Code = compiler.GenerateCodeByItem(item);
+        item.PathToGeneratedClass = Path.Combine(directoryToLoadTests, $"{item.ClassName}Tests.cs");
         System.Console.WriteLine("End of generation");
         return item;
     }
