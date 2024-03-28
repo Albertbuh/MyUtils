@@ -29,7 +29,7 @@ public class TestsGenerator
         System.Console.WriteLine("Tests uploaded");
     }
 
-    public void Generate(IEnumerable<string> pathsToFiles, string pathToLoad)
+    public async Task Generate(IEnumerable<string> pathsToFiles, string pathToLoad)
     {
         if (!Directory.Exists(pathToLoad))
             Directory.CreateDirectory(pathToLoad);
@@ -37,7 +37,7 @@ public class TestsGenerator
         foreach (var path in pathsToFiles)
         {
             //_ need to remove warning about lack of async/await
-            _ = ParseFile(path, pathToLoad);
+            await ParseFile(path, pathToLoad);
         }
         System.Console.WriteLine("Tests uploaded");
     }
