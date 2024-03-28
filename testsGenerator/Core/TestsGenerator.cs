@@ -22,14 +22,15 @@ public class TestsGenerator
         var pipeline = new GenerationPipeline(LoadClassInfoInMemory, GenerateTestClass, LoadToFile);
         foreach (var path in pathsToFiles)
         {
-            await pipeline.SendAsync(path);
+            // await pipeline.SendAsync(path);
+            pipeline.Post(path);
         }
         await pipeline.CompleteAsync();
 
         System.Console.WriteLine("Tests uploaded");
     }
 
-    public async Task Generate(IEnumerable<string> pathsToFiles, string pathToLoad)
+    public void Generate(IEnumerable<string> pathsToFiles, string pathToLoad)
     {
         if (!Directory.Exists(pathToLoad))
             Directory.CreateDirectory(pathToLoad);
@@ -37,7 +38,7 @@ public class TestsGenerator
         foreach (var path in pathsToFiles)
         {
             //_ need to remove warning about lack of async/await
-            await ParseFile(path, pathToLoad);
+            _ = ParseFile(path, pathToLoad);
         }
         System.Console.WriteLine("Tests uploaded");
     }

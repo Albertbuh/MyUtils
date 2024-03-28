@@ -23,7 +23,7 @@ internal class GenerationPipeline
         {
             MaxDegreeOfParallelism = parallelTasksAmount
         };
-        defaultLinkOptions = linkOptions ?? new DataflowLinkOptions { PropagateCompletion = false };
+        defaultLinkOptions = linkOptions ?? new DataflowLinkOptions { PropagateCompletion = true };
 
         loadClassInMemoryBlock = new(loadClassInMemoryFunc, defaultExecutionOptions);
         generateTestClassBlock = new(generateTestClassFunc, defaultExecutionOptions);
