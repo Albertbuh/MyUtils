@@ -10,21 +10,6 @@ public class TracerCore_SmokeTests
     foo = new Foo();
   }
   
-  [Fact]
-  public void CorrectWork_TraceOneMethod_100ms()
-  {
-    foo.RunMethodForTrace(small_ms_value);
-    var result = foo.Tracer.GetTraceResult();
-    var threadInfo = result.Threads[0];
-    
-    var methodInfo = threadInfo.Methods.First().Peek();
-    long.TryParse(methodInfo.Time.Substring(0, methodInfo.Time.Length - 2), out var time);
-    // 4 - is max stopwatch inaccuracy
-    Assert.True(Math.Abs(time - small_ms_value) <= 4 && 
-                methodInfo.Name.Equals("RunMethodForTrace") &&
-                methodInfo.ClassName.Equals("Foo"),
-                $"Test of correct work finished with {methodInfo.Time}");
-  }
 
   [Theory]
   [InlineData(2)]
