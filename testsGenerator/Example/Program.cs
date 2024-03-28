@@ -1,9 +1,10 @@
 ﻿using Core;
-var generator = new TestsGenerator();
+var generator = new TestsGenerator(Core.Compilers.GeneratorCompilersEnum.XUnit);
 var currentDir = Directory.GetCurrentDirectory();
 var files = new List<string>()
 {
-  @"./Foo.cs"
+  @"./Foo.cs", @"./Loo.cs"
 };
 
-generator.GenerateAsync(files, @"./test");
+await generator.GenerateAsync(files, @"./test");
+// generator.Generate(files, @"./test");
