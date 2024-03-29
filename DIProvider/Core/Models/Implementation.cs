@@ -8,11 +8,18 @@ internal class Implementation
     Type type;
     public LifeTimeEnum LifeTime;
     object? implementation;
-    public object Object =>
-        implementation != null ? implementation : Activator.CreateInstance(type)!;
+
+    public Implementation(Type type, LifeTimeEnum lifeTime)
+    {
+        this.type = type;
+        this.LifeTime = lifeTime;
+    }
 
     public object GetObject(Core.DependencyProvider provider)
     {
+        if(implementation != null)
+            return implementation;
+        
         var constructors = type.GetConstructors(
                 BindingFlags.Instance
                     | BindingFlags.NonPublic
@@ -36,6 +43,10 @@ internal class Implementation
                 throw new Exception("Cant fill constructor");
             }
         }
+        
+        if(LifeTime is LifeTimeEnum.Singleton)
+            implementation = result;
+        
         return result!;
     }
 
@@ -53,8 +64,10 @@ internal class Implementation
             var dependentService = provider.services.Keys.FirstOrDefault(k => k.Equals(pType));
             if (dependentService != null)
             {
-                var innerImplementations = provider.services[dependentService].GetImplementations(provider);
-                if(EnumerableUtils.IsEnumerable(pType))
+                var innerImplementations = provider
+                    .services[dependentService]
+                    .GetImplementations(provider);
+                if (EnumerableUtils.IsEnumerable(pType))
                     filled[i] = innerImplementations;
                 else
                     filled[i] = innerImplementations.Last();
@@ -65,13 +78,6 @@ internal class Implementation
         return constructor.Invoke(filled);
     }
 
-
     private static object? GetDefaultValue(Type t) =>
         t.IsValueType ? Activator.CreateInstance(t) : null;
-
-    public Implementation(Type type, LifeTimeEnum lifeTime)
-    {
-        this.type = type;
-        this.LifeTime = lifeTime;
-    }
 }

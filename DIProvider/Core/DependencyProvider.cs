@@ -31,5 +31,4 @@ public class DependencyProvider
             return (T)services[serviceType].GetImplementations(this).Last();//Implementations.Last();
     }
 
-    
 }

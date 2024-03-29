@@ -5,8 +5,6 @@ internal class Dependency
     private Type dependency;
     private List<Implementation> implementations = new();
 
-    public IEnumerable<object> Implementations => implementations.Select(impl => impl.Object);
-
     public IEnumerable<object> GetImplementations(Core.DependencyProvider provider)
     {
         var list = new List<object>();
