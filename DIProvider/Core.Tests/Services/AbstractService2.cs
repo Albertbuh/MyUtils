@@ -6,4 +6,6 @@ public abstract class AbstractService2
     {
         return false;
     }
+
+    public abstract int GetSomeNumber();
 }

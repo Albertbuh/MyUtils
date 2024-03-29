@@ -1,10 +1,11 @@
 using Core.Models;
+using Core.Utils;
 
 namespace Core;
 
 public class DependencyProvider
 {
-    Dictionary<Type, Dependency> services = new();
+    internal Dictionary<Type, Dependency> services = new();
     DependenciesConfiguration config;
 
     public DependencyProvider(DependenciesConfiguration config)
@@ -15,48 +16,20 @@ public class DependencyProvider
 
     public T Resolve<T>()
     {
-        bool isEnumerable = IsEnumerable(typeof(T));
-        Type serviceType = isEnumerable ? GetTypeOfEnumerable(typeof(T)) : typeof(T);
+        bool isEnumerable = EnumerableUtils.IsEnumerable(typeof(T));
+        Type serviceType = isEnumerable ? EnumerableUtils.GetTypeOfEnumerable(typeof(T)) : typeof(T);
 
         if (!services.ContainsKey(serviceType))
             throw new InvalidOperationException(
                 $"Unable to find such type implementation in dependencies {serviceType.ToString()}"
             );
 
+        var implementations = services[serviceType].GetImplementations(this);
         if (isEnumerable)
-        {
-            var data = services[serviceType].Implementations.ToList();
-            return (T)ConvertToTypedEnumerable(data, serviceType);
-        }
+            return (T)EnumerableUtils.ConvertToTypedEnumerable(implementations.ToList(), serviceType);
         else
-            return (T)services[serviceType].Implementations.Last();
+            return (T)services[serviceType].GetImplementations(this).Last();//Implementations.Last();
     }
 
-    private object ConvertToTypedEnumerable(List<object> values, Type elementType)
-    {
-        var genericListType = typeof(List<>).MakeGenericType(elementType);
-        var typedCollection = Activator.CreateInstance(genericListType);
-
-        var addMethod = genericListType.GetMethod("Add");
-        foreach (var value in values)
-        {
-            addMethod!.Invoke(typedCollection, new[] { value });
-        }
-
-        return typedCollection!.GetType().GetMethod("AsReadOnly")!.Invoke(typedCollection, null)!;
-    }
-
-    private bool IsEnumerable(Type t) =>
-        t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IEnumerable<>);
-
-    private Type GetTypeOfEnumerable(Type t)
-    {
-        if (IsEnumerable(t))
-        {
-            Type[] genericArguments = t.GetGenericArguments();
-            return genericArguments[0];
-        }
-        else
-            return t;
-    }
+    
 }
