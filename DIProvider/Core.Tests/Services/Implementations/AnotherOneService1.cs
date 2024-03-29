@@ -1,6 +1,6 @@
 namespace Core.Tests.Services.Implementations;
 
-public class Service1 : IService1
+public class AnotherOneService1 : IService1
 {
     public bool DoSmth()
     {
