@@ -1,32 +1,48 @@
 using System.Reflection;
+using Core.Exceptions;
 using Core.Utils;
 
 namespace Core.Models;
 
 internal class Implementation
 {
-    Type type;
+    Type _type;
     public LifeTimeEnum LifeTime;
-    object? implementation;
+    object? _implementation;
+
+    private object locker = new();
 
     public Implementation(Type type, LifeTimeEnum lifeTime)
     {
-        this.type = type;
-        this.LifeTime = lifeTime;
+        _type = type;
+        LifeTime = lifeTime;
     }
 
-    public object GetObject(Core.DependencyProvider provider)
+    public object GetObjectWithGeneric(Core.DependencyProvider provider, Type generic)
     {
-        if(implementation != null)
-            return implementation;
-        
-        var constructors = type.GetConstructors(
+        if (!generic.IsGenericType)
+            return GetObject(provider);
+
+        var genericArgument = generic.GetGenericArguments()[0];
+        var implementationType = provider.services[genericArgument];
+        var constructedType = _type.GetGenericTypeDefinition().MakeGenericType(genericArgument);
+
+        var result = InitializeImplementation(provider, constructedType);
+        return result != null ? result : GetObject(provider);
+    }
+
+    private IEnumerable<ConstructorInfo> GetConstructors(Type type) =>
+        type.GetConstructors(
                 BindingFlags.Instance
                     | BindingFlags.NonPublic
                     | BindingFlags.Public
                     | BindingFlags.Static
             )
             .OrderByDescending(constructorInfo => constructorInfo.GetParameters().Length);
+
+    private object? InitializeImplementation(Core.DependencyProvider provider, Type type)
+    {
+        var constructors = GetConstructors(type);
         object? result = null;
         foreach (var constructor in constructors)
         {
@@ -35,22 +51,41 @@ internal class Implementation
 
             try
             {
-                result = FillWithConstructor(constructor, provider);
+                var parameters = FillConstructorParameters(constructor, provider);
+                result = constructor.Invoke(parameters);
             }
             catch (Exception e)
             {
                 System.Console.WriteLine(e);
-                throw new Exception("Cant fill constructor");
+                throw new DependencyImplementationException("Cant fill constructor");
             }
         }
-        
-        if(LifeTime is LifeTimeEnum.Singleton)
-            implementation = result;
-        
+        return result;
+    }
+
+    public object GetObject(Core.DependencyProvider provider)
+    {
+        if (_implementation != null)
+            return _implementation;
+
+        var result = InitializeImplementation(provider, _type);
+
+        if (LifeTime is LifeTimeEnum.Singleton)
+        {
+            lock (locker)
+            {
+                if (_implementation == null)
+                {
+                    lock (locker)
+                        _implementation = result;
+                }
+            }
+        }
+
         return result!;
     }
 
-    private object FillWithConstructor(
+    private object?[] FillConstructorParameters(
         ConstructorInfo constructor,
         Core.DependencyProvider provider
     )
@@ -75,7 +110,7 @@ internal class Implementation
             else
                 filled[i] = GetDefaultValue(pType);
         }
-        return constructor.Invoke(filled);
+        return filled;
     }
 
     private static object? GetDefaultValue(Type t) =>
