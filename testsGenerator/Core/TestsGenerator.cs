@@ -24,11 +24,9 @@ public class TestsGenerator
         var pipeline = new GenerationPipeline(LoadClassInfoInMemory, GenerateTestClass, LoadToFile);
         foreach (var path in pathsToFiles)
         {
-            // await pipeline.SendAsync(path);
-            pipeline.Post(path);
+            await pipeline.SendAsync(path);
         }
-        //await pipeline.CompleteAsync();
-        pipeline.Complete();
+        await pipeline.CompleteAsync();
 
         System.Console.WriteLine("Tests uploaded");
     }

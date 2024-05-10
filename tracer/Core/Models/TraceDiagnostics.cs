@@ -1,5 +1,7 @@
 namespace Tracer.Core.Models
 {
-  internal record TraceDiagnostic(StackFrame Frame);  
+    ///<summary>
+    ///Save diagnostic data for certain method
+    ///</summary>
+    internal record struct TraceDiagnostic(StackFrame Frame);
 }
-

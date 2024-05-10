@@ -6,13 +6,12 @@ namespace Core;
 
 public class DependencyProvider
 {
-    internal Dictionary<Type, Dependency> services = new();
+    internal Dictionary<Type, Dependency> services => config.services;
     DependenciesConfiguration config;
 
     public DependencyProvider(DependenciesConfiguration config)
     {
         this.config = config;
-        services = config.services;
     }
 
     public T Resolve<T>()
@@ -25,6 +24,7 @@ public class DependencyProvider
         IEnumerable<object> implementations;
         if (!services.ContainsKey(serviceType))
         {
+            //Check if it is open generic dependency
             if (serviceType.IsGenericType)
                 implementations = GetImplementationsForGeneric(serviceType);
             else

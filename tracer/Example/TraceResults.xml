@@ -1,103 +1,307 @@
 <root>
   <Threads>
-    <Id>4</Id>
-    <Time>101ms</Time>
-    <Methods>
-      <Methods>
-        <Name>RunMethodForTrace</Name>
-        <ClassName>Foo</ClassName>
-        <Time>51ms</Time>
-      </Methods>
-    </Methods>
-    <Methods>
-      <Methods>
-        <Name>RunMethodForTrace</Name>
-        <ClassName>Foo</ClassName>
-        <Time>50ms</Time>
-      </Methods>
-    </Methods>
-  </Threads>
-  <Threads>
     <Id>7</Id>
-    <Time>56ms</Time>
+    <Time>1060ms</Time>
     <Methods>
       <Methods>
-        <Name>RunMethodForTrace</Name>
         <ClassName>Foo</ClassName>
-        <Time>56ms</Time>
+        <Name>RunMethodForTrace</Name>
+        <Time>1060ms</Time>
+        <ChildMethods>
+          <ClassName>Foo</ClassName>
+          <Name>MyMethod</Name>
+          <Time>1010ms</Time>
+          <ChildMethods>
+            <ClassName>Bar</ClassName>
+            <Name>InnerMethod</Name>
+            <Time>910ms</Time>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Aboba</Name>
+              <Time>308ms</Time>
+            </ChildMethods>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Biboba</Name>
+              <Time>400ms</Time>
+            </ChildMethods>
+          </ChildMethods>
+        </ChildMethods>
       </Methods>
     </Methods>
   </Threads>
   <Threads>
-    <Id>8</Id>
-    <Time>55ms</Time>
+    <Id>4</Id>
+    <Time>1060ms</Time>
     <Methods>
       <Methods>
-        <Name>RunMethodForTrace</Name>
         <ClassName>Foo</ClassName>
-        <Time>55ms</Time>
-      </Methods>
-    </Methods>
-  </Threads>
-  <Threads>
-    <Id>6</Id>
-    <Time>56ms</Time>
-    <Methods>
-      <Methods>
         <Name>RunMethodForTrace</Name>
-        <ClassName>Foo</ClassName>
-        <Time>56ms</Time>
-      </Methods>
-    </Methods>
-  </Threads>
-  <Threads>
-    <Id>9</Id>
-    <Time>106ms</Time>
-    <Methods>
-      <Methods>
-        <Name>RunMethodForTrace</Name>
-        <ClassName>Foo</ClassName>
-        <Time>55ms</Time>
-      </Methods>
-    </Methods>
-    <Methods>
-      <Methods>
-        <Name>RunMethodForTrace</Name>
-        <ClassName>Foo</ClassName>
-        <Time>51ms</Time>
+        <Time>1060ms</Time>
+        <ChildMethods>
+          <ClassName>Foo</ClassName>
+          <Name>MyMethod</Name>
+          <Time>1010ms</Time>
+          <ChildMethods>
+            <ClassName>Bar</ClassName>
+            <Name>InnerMethod</Name>
+            <Time>910ms</Time>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Aboba</Name>
+              <Time>308ms</Time>
+            </ChildMethods>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Biboba</Name>
+              <Time>400ms</Time>
+            </ChildMethods>
+          </ChildMethods>
+        </ChildMethods>
       </Methods>
     </Methods>
   </Threads>
   <Threads>
     <Id>11</Id>
-    <Time>56ms</Time>
+    <Time>1062ms</Time>
     <Methods>
       <Methods>
-        <Name>RunMethodForTrace</Name>
         <ClassName>Foo</ClassName>
-        <Time>56ms</Time>
+        <Name>RunMethodForTrace</Name>
+        <Time>1062ms</Time>
+        <ChildMethods>
+          <ClassName>Foo</ClassName>
+          <Name>MyMethod</Name>
+          <Time>1012ms</Time>
+          <ChildMethods>
+            <ClassName>Bar</ClassName>
+            <Name>InnerMethod</Name>
+            <Time>912ms</Time>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Aboba</Name>
+              <Time>309ms</Time>
+            </ChildMethods>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Biboba</Name>
+              <Time>401ms</Time>
+            </ChildMethods>
+          </ChildMethods>
+        </ChildMethods>
       </Methods>
     </Methods>
   </Threads>
   <Threads>
-    <Id>12</Id>
-    <Time>56ms</Time>
+    <Id>6</Id>
+    <Time>1061ms</Time>
     <Methods>
       <Methods>
-        <Name>RunMethodForTrace</Name>
         <ClassName>Foo</ClassName>
-        <Time>56ms</Time>
+        <Name>RunMethodForTrace</Name>
+        <Time>1061ms</Time>
+        <ChildMethods>
+          <ClassName>Foo</ClassName>
+          <Name>MyMethod</Name>
+          <Time>1011ms</Time>
+          <ChildMethods>
+            <ClassName>Bar</ClassName>
+            <Name>InnerMethod</Name>
+            <Time>911ms</Time>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Aboba</Name>
+              <Time>310ms</Time>
+            </ChildMethods>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Biboba</Name>
+              <Time>400ms</Time>
+            </ChildMethods>
+          </ChildMethods>
+        </ChildMethods>
       </Methods>
     </Methods>
   </Threads>
   <Threads>
     <Id>10</Id>
-    <Time>56ms</Time>
+    <Time>1061ms</Time>
     <Methods>
       <Methods>
-        <Name>RunMethodForTrace</Name>
         <ClassName>Foo</ClassName>
-        <Time>56ms</Time>
+        <Name>RunMethodForTrace</Name>
+        <Time>1061ms</Time>
+        <ChildMethods>
+          <ClassName>Foo</ClassName>
+          <Name>MyMethod</Name>
+          <Time>1011ms</Time>
+          <ChildMethods>
+            <ClassName>Bar</ClassName>
+            <Name>InnerMethod</Name>
+            <Time>911ms</Time>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Aboba</Name>
+              <Time>306ms</Time>
+            </ChildMethods>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Biboba</Name>
+              <Time>401ms</Time>
+            </ChildMethods>
+          </ChildMethods>
+        </ChildMethods>
+      </Methods>
+    </Methods>
+  </Threads>
+  <Threads>
+    <Id>9</Id>
+    <Time>2107ms</Time>
+    <Methods>
+      <Methods>
+        <ClassName>Foo</ClassName>
+        <Name>RunMethodForTrace</Name>
+        <Time>1054ms</Time>
+        <ChildMethods>
+          <ClassName>Foo</ClassName>
+          <Name>MyMethod</Name>
+          <Time>1004ms</Time>
+          <ChildMethods>
+            <ClassName>Bar</ClassName>
+            <Name>InnerMethod</Name>
+            <Time>904ms</Time>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Aboba</Name>
+              <Time>301ms</Time>
+            </ChildMethods>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Biboba</Name>
+              <Time>400ms</Time>
+            </ChildMethods>
+          </ChildMethods>
+        </ChildMethods>
+      </Methods>
+    </Methods>
+    <Methods>
+      <Methods>
+        <ClassName>Foo</ClassName>
+        <Name>RunMethodForTrace</Name>
+        <Time>1052ms</Time>
+        <ChildMethods>
+          <ClassName>Foo</ClassName>
+          <Name>MyMethod</Name>
+          <Time>1002ms</Time>
+          <ChildMethods>
+            <ClassName>Bar</ClassName>
+            <Name>InnerMethod</Name>
+            <Time>902ms</Time>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Aboba</Name>
+              <Time>300ms</Time>
+            </ChildMethods>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Biboba</Name>
+              <Time>401ms</Time>
+            </ChildMethods>
+          </ChildMethods>
+        </ChildMethods>
+      </Methods>
+    </Methods>
+  </Threads>
+  <Threads>
+    <Id>12</Id>
+    <Time>1061ms</Time>
+    <Methods>
+      <Methods>
+        <ClassName>Foo</ClassName>
+        <Name>RunMethodForTrace</Name>
+        <Time>1061ms</Time>
+        <ChildMethods>
+          <ClassName>Foo</ClassName>
+          <Name>MyMethod</Name>
+          <Time>1011ms</Time>
+          <ChildMethods>
+            <ClassName>Bar</ClassName>
+            <Name>InnerMethod</Name>
+            <Time>911ms</Time>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Aboba</Name>
+              <Time>309ms</Time>
+            </ChildMethods>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Biboba</Name>
+              <Time>400ms</Time>
+            </ChildMethods>
+          </ChildMethods>
+        </ChildMethods>
+      </Methods>
+    </Methods>
+  </Threads>
+  <Threads>
+    <Id>8</Id>
+    <Time>1060ms</Time>
+    <Methods>
+      <Methods>
+        <ClassName>Foo</ClassName>
+        <Name>RunMethodForTrace</Name>
+        <Time>1060ms</Time>
+        <ChildMethods>
+          <ClassName>Foo</ClassName>
+          <Name>MyMethod</Name>
+          <Time>1010ms</Time>
+          <ChildMethods>
+            <ClassName>Bar</ClassName>
+            <Name>InnerMethod</Name>
+            <Time>910ms</Time>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Aboba</Name>
+              <Time>308ms</Time>
+            </ChildMethods>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Biboba</Name>
+              <Time>400ms</Time>
+            </ChildMethods>
+          </ChildMethods>
+        </ChildMethods>
+      </Methods>
+    </Methods>
+  </Threads>
+  <Threads>
+    <Id>13</Id>
+    <Time>1051ms</Time>
+    <Methods>
+      <Methods>
+        <ClassName>Foo</ClassName>
+        <Name>RunMethodForTrace</Name>
+        <Time>1051ms</Time>
+        <ChildMethods>
+          <ClassName>Foo</ClassName>
+          <Name>MyMethod</Name>
+          <Time>1001ms</Time>
+          <ChildMethods>
+            <ClassName>Bar</ClassName>
+            <Name>InnerMethod</Name>
+            <Time>901ms</Time>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Aboba</Name>
+              <Time>300ms</Time>
+            </ChildMethods>
+            <ChildMethods>
+              <ClassName>Bar</ClassName>
+              <Name>Biboba</Name>
+              <Time>400ms</Time>
+            </ChildMethods>
+          </ChildMethods>
+        </ChildMethods>
       </Methods>
     </Methods>
   </Threads>

@@ -1,65 +1,228 @@
 threads:
-- id: 4
-  time: 101ms
-  methods:
-  - - name: RunMethodForTrace
-      className: Foo
-      time: 51ms
-      childMethods: []
-  - - name: RunMethodForTrace
-      className: Foo
-      time: 50ms
-      childMethods: []
 - id: 7
-  time: 56ms
+  time: 1060ms
   methods:
-  - - name: RunMethodForTrace
-      className: Foo
-      time: 56ms
-      childMethods: []
-- id: 8
-  time: 55ms
+  - - className: Foo
+      name: RunMethodForTrace
+      childMethods:
+      - className: Foo
+        name: MyMethod
+        childMethods:
+        - className: Bar
+          name: InnerMethod
+          childMethods:
+          - className: Bar
+            name: Aboba
+            childMethods: []
+            time: 308ms
+          - className: Bar
+            name: Biboba
+            childMethods: []
+            time: 400ms
+          time: 910ms
+        time: 1010ms
+      time: 1060ms
+- id: 4
+  time: 1060ms
   methods:
-  - - name: RunMethodForTrace
-      className: Foo
-      time: 55ms
-      childMethods: []
-- id: 6
-  time: 56ms
-  methods:
-  - - name: RunMethodForTrace
-      className: Foo
-      time: 56ms
-      childMethods: []
-- id: 9
-  time: 106ms
-  methods:
-  - - name: RunMethodForTrace
-      className: Foo
-      time: 55ms
-      childMethods: []
-  - - name: RunMethodForTrace
-      className: Foo
-      time: 51ms
-      childMethods: []
+  - - className: Foo
+      name: RunMethodForTrace
+      childMethods:
+      - className: Foo
+        name: MyMethod
+        childMethods:
+        - className: Bar
+          name: InnerMethod
+          childMethods:
+          - className: Bar
+            name: Aboba
+            childMethods: []
+            time: 308ms
+          - className: Bar
+            name: Biboba
+            childMethods: []
+            time: 400ms
+          time: 910ms
+        time: 1010ms
+      time: 1060ms
 - id: 11
-  time: 56ms
+  time: 1062ms
   methods:
-  - - name: RunMethodForTrace
-      className: Foo
-      time: 56ms
-      childMethods: []
-- id: 12
-  time: 56ms
+  - - className: Foo
+      name: RunMethodForTrace
+      childMethods:
+      - className: Foo
+        name: MyMethod
+        childMethods:
+        - className: Bar
+          name: InnerMethod
+          childMethods:
+          - className: Bar
+            name: Aboba
+            childMethods: []
+            time: 309ms
+          - className: Bar
+            name: Biboba
+            childMethods: []
+            time: 401ms
+          time: 912ms
+        time: 1012ms
+      time: 1062ms
+- id: 6
+  time: 1061ms
   methods:
-  - - name: RunMethodForTrace
-      className: Foo
-      time: 56ms
-      childMethods: []
+  - - className: Foo
+      name: RunMethodForTrace
+      childMethods:
+      - className: Foo
+        name: MyMethod
+        childMethods:
+        - className: Bar
+          name: InnerMethod
+          childMethods:
+          - className: Bar
+            name: Aboba
+            childMethods: []
+            time: 310ms
+          - className: Bar
+            name: Biboba
+            childMethods: []
+            time: 400ms
+          time: 911ms
+        time: 1011ms
+      time: 1061ms
 - id: 10
-  time: 56ms
+  time: 1061ms
   methods:
-  - - name: RunMethodForTrace
-      className: Foo
-      time: 56ms
-      childMethods: []
+  - - className: Foo
+      name: RunMethodForTrace
+      childMethods:
+      - className: Foo
+        name: MyMethod
+        childMethods:
+        - className: Bar
+          name: InnerMethod
+          childMethods:
+          - className: Bar
+            name: Aboba
+            childMethods: []
+            time: 306ms
+          - className: Bar
+            name: Biboba
+            childMethods: []
+            time: 401ms
+          time: 911ms
+        time: 1011ms
+      time: 1061ms
+- id: 9
+  time: 2107ms
+  methods:
+  - - className: Foo
+      name: RunMethodForTrace
+      childMethods:
+      - className: Foo
+        name: MyMethod
+        childMethods:
+        - className: Bar
+          name: InnerMethod
+          childMethods:
+          - className: Bar
+            name: Aboba
+            childMethods: []
+            time: 301ms
+          - className: Bar
+            name: Biboba
+            childMethods: []
+            time: 400ms
+          time: 904ms
+        time: 1004ms
+      time: 1054ms
+  - - className: Foo
+      name: RunMethodForTrace
+      childMethods:
+      - className: Foo
+        name: MyMethod
+        childMethods:
+        - className: Bar
+          name: InnerMethod
+          childMethods:
+          - className: Bar
+            name: Aboba
+            childMethods: []
+            time: 300ms
+          - className: Bar
+            name: Biboba
+            childMethods: []
+            time: 401ms
+          time: 902ms
+        time: 1002ms
+      time: 1052ms
+- id: 12
+  time: 1061ms
+  methods:
+  - - className: Foo
+      name: RunMethodForTrace
+      childMethods:
+      - className: Foo
+        name: MyMethod
+        childMethods:
+        - className: Bar
+          name: InnerMethod
+          childMethods:
+          - className: Bar
+            name: Aboba
+            childMethods: []
+            time: 309ms
+          - className: Bar
+            name: Biboba
+            childMethods: []
+            time: 400ms
+          time: 911ms
+        time: 1011ms
+      time: 1061ms
+- id: 8
+  time: 1060ms
+  methods:
+  - - className: Foo
+      name: RunMethodForTrace
+      childMethods:
+      - className: Foo
+        name: MyMethod
+        childMethods:
+        - className: Bar
+          name: InnerMethod
+          childMethods:
+          - className: Bar
+            name: Aboba
+            childMethods: []
+            time: 308ms
+          - className: Bar
+            name: Biboba
+            childMethods: []
+            time: 400ms
+          time: 910ms
+        time: 1010ms
+      time: 1060ms
+- id: 13
+  time: 1051ms
+  methods:
+  - - className: Foo
+      name: RunMethodForTrace
+      childMethods:
+      - className: Foo
+        name: MyMethod
+        childMethods:
+        - className: Bar
+          name: InnerMethod
+          childMethods:
+          - className: Bar
+            name: Aboba
+            childMethods: []
+            time: 300ms
+          - className: Bar
+            name: Biboba
+            childMethods: []
+            time: 400ms
+          time: 901ms
+        time: 1001ms
+      time: 1051ms

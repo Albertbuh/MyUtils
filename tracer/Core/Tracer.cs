@@ -2,26 +2,28 @@ namespace Tracer.Core;
 
 public class Tracer : ITracer
 {
-    Dictionary<int, ThreadTrace> threads;
-
+    Dictionary<int, ThreadTrace> threads = new();
     private Object locker = new Object();
-    private Dictionary<int, int> lastDepths = new();
-
     private int currentThreadId => System.Environment.CurrentManagedThreadId;
 
-    public Tracer()
-    {
-        threads = new Dictionary<int, ThreadTrace>();
-    }
+    public Tracer() { }
 
     public TraceResult GetTraceResult()
     {
-        var dtoList = new List<ThreadTraceDTO>();
-        foreach (var thread in threads.Values)
+        return new TraceResult()
         {
-            dtoList.Add(new ThreadTraceDTO(thread.Id, thread.TotalTime, thread.GetListOfTracedMethods()));
-        }
-        return new TraceResult() { Threads = dtoList };
+            Threads = threads
+                .Values
+                .Select(
+                    thread =>
+                        new ThreadTraceDTO(
+                            thread.Id,
+                            thread.TotalTime,
+                            thread.GetListOfTracedMethods()
+                        )
+                )
+                .ToList()
+        };
     }
 
     public void StartTrace()
@@ -31,7 +33,6 @@ public class Tracer : ITracer
             if (!threads.ContainsKey(currentThreadId))
             {
                 threads.Add(currentThreadId, new ThreadTrace(currentThreadId));
-                lastDepths.Add(currentThreadId, currentThreadId);
             }
 
             var frame = new StackTrace(true).GetFrame(1);
@@ -51,28 +52,26 @@ public class Tracer : ITracer
         {
             if (!threads.ContainsKey(currentThreadId))
                 throw new InvalidOperationException(
-                  $"Attemp to stop trace for thread (id {currentThreadId}) without tracing methods"
+                    $"Attemp to stop trace for thread (id {currentThreadId}) without tracing methods"
                 );
 
             var thread = threads[currentThreadId];
             thread.TryToStopTimeMeasurment();
             if (thread.Diagnostics.TryPop(out var diagnostic))
             {
-                var methodInfo = diagnostic.Frame.GetMethod();
-                if (methodInfo != null)
+                var methodBase = diagnostic.Frame.GetMethod();
+                if (methodBase != null)
                 {
-                    lastDepths[currentThreadId] = thread.SaveMethodInfo(
-                      new MethodInfo(
-                        methodInfo.Name,
-                        methodInfo.ReflectedType!.Name,
-                        thread.GetTimeMeasurmentOfLastMethod()
-                      ),
-                      lastDepths[currentThreadId]
+                    thread.SaveMethodInfo(
+                        new MethodInfo(
+                            methodBase.Name,
+                            methodBase.ReflectedType!.Name,
+                            thread.GetTimeMeasurmentOfLastMethod()
+                        )
                     );
                 }
             }
             thread.TryToStartStopwatch();
         }
     }
-
 }

@@ -2,6 +2,9 @@ namespace Core.Utils;
 
 internal static class EnumerableUtils
 {
+    /// <summary>
+    /// Convert List of 'objects' to IEnumerable of 'elementType'
+    /// </summary>
     public static object ConvertToTypedEnumerable(List<object> values, Type elementType)
     {
         var genericListType = typeof(List<>).MakeGenericType(elementType);

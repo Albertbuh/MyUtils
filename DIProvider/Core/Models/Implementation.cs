@@ -24,7 +24,6 @@ internal class Implementation
             return GetObject(provider);
 
         var genericArgument = generic.GetGenericArguments()[0];
-        var implementationType = provider.services[genericArgument];
         var constructedType = _type.GetGenericTypeDefinition().MakeGenericType(genericArgument);
 
         var result = InitializeImplementation(provider, constructedType);

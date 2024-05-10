@@ -1,129 +1,405 @@
 {
   "Threads": [
     {
-      "Id": 4,
-      "Time": "101ms",
-      "Methods": [
-        [
-          {
-            "Name": "RunMethodForTrace",
-            "ClassName": "Foo",
-            "Time": "51ms",
-            "ChildMethods": []
-          }
-        ],
-        [
-          {
-            "Name": "RunMethodForTrace",
-            "ClassName": "Foo",
-            "Time": "50ms",
-            "ChildMethods": []
-          }
-        ]
-      ]
-    },
-    {
       "Id": 7,
-      "Time": "56ms",
+      "Time": "1060ms",
       "Methods": [
         [
           {
-            "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "56ms",
-            "ChildMethods": []
+            "Name": "RunMethodForTrace",
+            "Time": "1060ms",
+            "ChildMethods": [
+              {
+                "ClassName": "Foo",
+                "Name": "MyMethod",
+                "Time": "1010ms",
+                "ChildMethods": [
+                  {
+                    "ClassName": "Bar",
+                    "Name": "InnerMethod",
+                    "Time": "910ms",
+                    "ChildMethods": [
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Aboba",
+                        "Time": "308ms",
+                        "ChildMethods": []
+                      },
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Biboba",
+                        "Time": "400ms",
+                        "ChildMethods": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       ]
     },
     {
-      "Id": 8,
-      "Time": "55ms",
+      "Id": 4,
+      "Time": "1060ms",
       "Methods": [
         [
           {
-            "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "55ms",
-            "ChildMethods": []
-          }
-        ]
-      ]
-    },
-    {
-      "Id": 6,
-      "Time": "56ms",
-      "Methods": [
-        [
-          {
             "Name": "RunMethodForTrace",
-            "ClassName": "Foo",
-            "Time": "56ms",
-            "ChildMethods": []
-          }
-        ]
-      ]
-    },
-    {
-      "Id": 9,
-      "Time": "106ms",
-      "Methods": [
-        [
-          {
-            "Name": "RunMethodForTrace",
-            "ClassName": "Foo",
-            "Time": "55ms",
-            "ChildMethods": []
-          }
-        ],
-        [
-          {
-            "Name": "RunMethodForTrace",
-            "ClassName": "Foo",
-            "Time": "51ms",
-            "ChildMethods": []
+            "Time": "1060ms",
+            "ChildMethods": [
+              {
+                "ClassName": "Foo",
+                "Name": "MyMethod",
+                "Time": "1010ms",
+                "ChildMethods": [
+                  {
+                    "ClassName": "Bar",
+                    "Name": "InnerMethod",
+                    "Time": "910ms",
+                    "ChildMethods": [
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Aboba",
+                        "Time": "308ms",
+                        "ChildMethods": []
+                      },
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Biboba",
+                        "Time": "400ms",
+                        "ChildMethods": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       ]
     },
     {
       "Id": 11,
-      "Time": "56ms",
+      "Time": "1062ms",
       "Methods": [
         [
           {
-            "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "56ms",
-            "ChildMethods": []
+            "Name": "RunMethodForTrace",
+            "Time": "1062ms",
+            "ChildMethods": [
+              {
+                "ClassName": "Foo",
+                "Name": "MyMethod",
+                "Time": "1012ms",
+                "ChildMethods": [
+                  {
+                    "ClassName": "Bar",
+                    "Name": "InnerMethod",
+                    "Time": "912ms",
+                    "ChildMethods": [
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Aboba",
+                        "Time": "309ms",
+                        "ChildMethods": []
+                      },
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Biboba",
+                        "Time": "401ms",
+                        "ChildMethods": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       ]
     },
     {
-      "Id": 12,
-      "Time": "56ms",
+      "Id": 6,
+      "Time": "1061ms",
       "Methods": [
         [
           {
-            "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "56ms",
-            "ChildMethods": []
+            "Name": "RunMethodForTrace",
+            "Time": "1061ms",
+            "ChildMethods": [
+              {
+                "ClassName": "Foo",
+                "Name": "MyMethod",
+                "Time": "1011ms",
+                "ChildMethods": [
+                  {
+                    "ClassName": "Bar",
+                    "Name": "InnerMethod",
+                    "Time": "911ms",
+                    "ChildMethods": [
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Aboba",
+                        "Time": "310ms",
+                        "ChildMethods": []
+                      },
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Biboba",
+                        "Time": "400ms",
+                        "ChildMethods": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       ]
     },
     {
       "Id": 10,
-      "Time": "56ms",
+      "Time": "1061ms",
       "Methods": [
         [
           {
-            "Name": "RunMethodForTrace",
             "ClassName": "Foo",
-            "Time": "56ms",
-            "ChildMethods": []
+            "Name": "RunMethodForTrace",
+            "Time": "1061ms",
+            "ChildMethods": [
+              {
+                "ClassName": "Foo",
+                "Name": "MyMethod",
+                "Time": "1011ms",
+                "ChildMethods": [
+                  {
+                    "ClassName": "Bar",
+                    "Name": "InnerMethod",
+                    "Time": "911ms",
+                    "ChildMethods": [
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Aboba",
+                        "Time": "306ms",
+                        "ChildMethods": []
+                      },
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Biboba",
+                        "Time": "401ms",
+                        "ChildMethods": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 9,
+      "Time": "2107ms",
+      "Methods": [
+        [
+          {
+            "ClassName": "Foo",
+            "Name": "RunMethodForTrace",
+            "Time": "1054ms",
+            "ChildMethods": [
+              {
+                "ClassName": "Foo",
+                "Name": "MyMethod",
+                "Time": "1004ms",
+                "ChildMethods": [
+                  {
+                    "ClassName": "Bar",
+                    "Name": "InnerMethod",
+                    "Time": "904ms",
+                    "ChildMethods": [
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Aboba",
+                        "Time": "301ms",
+                        "ChildMethods": []
+                      },
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Biboba",
+                        "Time": "400ms",
+                        "ChildMethods": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "ClassName": "Foo",
+            "Name": "RunMethodForTrace",
+            "Time": "1052ms",
+            "ChildMethods": [
+              {
+                "ClassName": "Foo",
+                "Name": "MyMethod",
+                "Time": "1002ms",
+                "ChildMethods": [
+                  {
+                    "ClassName": "Bar",
+                    "Name": "InnerMethod",
+                    "Time": "902ms",
+                    "ChildMethods": [
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Aboba",
+                        "Time": "300ms",
+                        "ChildMethods": []
+                      },
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Biboba",
+                        "Time": "401ms",
+                        "ChildMethods": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 12,
+      "Time": "1061ms",
+      "Methods": [
+        [
+          {
+            "ClassName": "Foo",
+            "Name": "RunMethodForTrace",
+            "Time": "1061ms",
+            "ChildMethods": [
+              {
+                "ClassName": "Foo",
+                "Name": "MyMethod",
+                "Time": "1011ms",
+                "ChildMethods": [
+                  {
+                    "ClassName": "Bar",
+                    "Name": "InnerMethod",
+                    "Time": "911ms",
+                    "ChildMethods": [
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Aboba",
+                        "Time": "309ms",
+                        "ChildMethods": []
+                      },
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Biboba",
+                        "Time": "400ms",
+                        "ChildMethods": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 8,
+      "Time": "1060ms",
+      "Methods": [
+        [
+          {
+            "ClassName": "Foo",
+            "Name": "RunMethodForTrace",
+            "Time": "1060ms",
+            "ChildMethods": [
+              {
+                "ClassName": "Foo",
+                "Name": "MyMethod",
+                "Time": "1010ms",
+                "ChildMethods": [
+                  {
+                    "ClassName": "Bar",
+                    "Name": "InnerMethod",
+                    "Time": "910ms",
+                    "ChildMethods": [
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Aboba",
+                        "Time": "308ms",
+                        "ChildMethods": []
+                      },
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Biboba",
+                        "Time": "400ms",
+                        "ChildMethods": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "Id": 13,
+      "Time": "1051ms",
+      "Methods": [
+        [
+          {
+            "ClassName": "Foo",
+            "Name": "RunMethodForTrace",
+            "Time": "1051ms",
+            "ChildMethods": [
+              {
+                "ClassName": "Foo",
+                "Name": "MyMethod",
+                "Time": "1001ms",
+                "ChildMethods": [
+                  {
+                    "ClassName": "Bar",
+                    "Name": "InnerMethod",
+                    "Time": "901ms",
+                    "ChildMethods": [
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Aboba",
+                        "Time": "300ms",
+                        "ChildMethods": []
+                      },
+                      {
+                        "ClassName": "Bar",
+                        "Name": "Biboba",
+                        "Time": "400ms",
+                        "ChildMethods": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       ]

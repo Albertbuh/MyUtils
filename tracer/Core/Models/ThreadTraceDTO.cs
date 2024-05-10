@@ -1,5 +1,3 @@
-using System.Collections.Concurrent;
-
 namespace Tracer.Core.Models;
 
 public struct ThreadTraceDTO

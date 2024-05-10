@@ -87,8 +87,8 @@ internal abstract class TestsCompiler
         var invocationExpression = SyntaxFactory.InvocationExpression(
             SyntaxFactory.MemberAccessExpression(
                 SyntaxKind.SimpleMemberAccessExpression,
-                SyntaxFactory.IdentifierName("Assert"),
-                SyntaxFactory.IdentifierName("Fail")
+                GenerateIdentifierName("Assert"),
+                GenerateIdentifierName("Fail")
             )
         );
 

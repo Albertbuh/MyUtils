@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-var fconfig = new Core.FakerConfig();
+﻿var fconfig = new Core.FakerConfig();
 fconfig.Add<Person, int, AgeGenerator>(p => p.Age);
 
 var faker = new Core.Faker(fconfig);
